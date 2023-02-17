@@ -1,3 +1,19 @@
-#Installation instructions
-import eyed3
+# Type 'python3 -m pip install mutagen' to install
+from mutagen.easyid3 import EasyID3
+
+# Open the MP3 file
+audio = EasyID3("example.mp3")
+
+# Set the title tag
+audio['title'] = 'New Song Title'
+
+# Set the artist tag
+audio['artist'] = 'New Artist Name'
+
+# Set the album tag
+audio['album'] = 'New Album Name'
+
+# Save the changes
+audio.save()
+
 
