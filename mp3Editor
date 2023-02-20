@@ -1,19 +1,20 @@
 # Type 'python3 -m pip install mutagen' to install
+from turtle import title
 from mutagen.easyid3 import EasyID3
+sampleFolder = '/Users/zaydrianprice/desktop/sample-mp3s/'
+filePath = sampleFolder + '01 Fergalicious (Feat. Will.I.Am).mp3'
 
-# Open the MP3 file
-audio = EasyID3("example.mp3")
+class MP3:
+    def __init__(self, filePath):
+        self.filePath = filePath
+        self.audio = EasyID3(filePath)
+        self.title = str(self.audio.get('title', [''])[0])
+        self.artist = str(self.audio.get('artist', [''])[0])
+        self.album = str(self.audio.get('album', [''])[0])
+    def __str__(self):
+        return f"Title: {self.title}\nArtist: {self.artist}\nAlbum: {self.album}"
 
-# Set the title tag
-audio['title'] = 'New Song Title'
-
-# Set the artist tag
-audio['artist'] = 'New Artist Name'
-
-# Set the album tag
-audio['album'] = 'New Album Name'
-
-# Save the changes
-audio.save()
+newMP3 = MP3(filePath)
+print(newMP3.artist)
 
 
