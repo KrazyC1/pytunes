@@ -7,6 +7,11 @@ class MP3Editor:
     def __init__(self):
        self.mp3List = [] 
        self.directory = chooseDirectory()
+       for filename in os.listdir(self.directory):
+        if filename.endswith(".mp3"):
+            mp3 = MP3(os.path.join(self.directory,filename)).title
+            self.mp3List.append(mp3)
+       print(self.mp3List)     
 
 def chooseDirectory():
     directory = input("Enter the folder path: ")
@@ -38,4 +43,4 @@ class MP3:
     def __str__(self):
         return f"Title: {self.title}\nArtist: {self.artist}\nAlbum: {self.album}\nGenre: {self.genre}"
 
-
+test = MP3Editor()
