@@ -1,6 +1,29 @@
 # Type 'python3 -m pip install mutagen' to install
 from turtle import title
 from mutagen.easyid3 import EasyID3
+import os
+
+class MP3Editor:
+    def __init__(self):
+       self.mp3List = [] 
+       self.directory = chooseDirectory()
+
+def chooseDirectory():
+    directory = input("Enter the folder path: ")
+    if os.path.isdir(directory):
+        print("Your directory is: " + directory)
+        return directory
+    else:
+        print("Invalid directory")
+    
+def chooseMP3():
+    file = input("Enter the MP3 path")
+    if os.path.isfile(file):
+        print("Your MP3 is: " + file)
+        return file
+    else:
+        print("Invalid MP3")
+
 sampleFolder = '/Users/zaydrianprice/desktop/sample-mp3s/'
 filePath = sampleFolder + '01 Fergalicious (Feat. Will.I.Am).mp3'
 
@@ -14,8 +37,5 @@ class MP3:
         self.genre = str(self.audio.get('genre', [''])[0])
     def __str__(self):
         return f"Title: {self.title}\nArtist: {self.artist}\nAlbum: {self.album}\nGenre: {self.genre}"
-
-newMP3 = MP3(filePath)
-print(newMP3)
 
 
