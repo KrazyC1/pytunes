@@ -5,11 +5,12 @@ import os
 
 #The main class for the mp3 editor.
 class MP3Editor:
+    #MP3Editor constructor
     def __init__(self):
        #Creates an empty list to fill with mp3s. 
        self.mp3List = [] 
        #Calls the chooseDirectory() method and assigns its output to a variable
-       self.directory = chooseDirectory()
+       self.directory = self.chooseDirectory()
        #Start of a loop to load mp3s into the empty mp3List.
        for filename in os.listdir(self.directory):
         #Loops through the given directory and finds files in the with .mp3 extention
@@ -20,25 +21,27 @@ class MP3Editor:
             self.mp3List.append(mp3)
        #When loop is finished, prints all elements in the loop     
        print(self.mp3List)     
-
-#A function that allows the user to give it a directory's absolute path and check if it is a valid directory.
-def chooseDirectory():
-    directory = input("Enter the folder path: ")
-    if os.path.isdir(directory):
-        #If the directory is valid, the function will pass the path through and return it as a string.
-        print("Your directory is: " + directory)
-        return directory
-    else:
-        #If directory is not valid, it will do nothing.
-        print("Invalid directory")
-    
-def chooseMP3():
-    file = input("Enter the MP3 path")
-    if os.path.isfile(file):
-        print("Your MP3 is: " + file)
-        return file
-    else:
-        print("Invalid MP3")
+    #A function that allows the user to give it a directory's absolute path and check if it is a valid directory. If it is, then the function will return the path as a string.
+    def chooseDirectory():
+        directory = input("Enter the folder path: ")
+        if os.path.isdir(directory):
+            #If the directory is valid, the function will pass the path through and return it as a string.
+            print("Your directory is: " + directory)
+            return directory
+        else:
+            #If directory is not valid, it will do nothing.
+            print("Invalid directory")
+    #A function that allows the user to give it a files absolute path and check if it is a valid file. If it is, then the function will return the path as a string.    
+    def chooseMP3():
+        file = input("Enter the MP3 path")
+        #Checks if file is a file.
+        if os.path.isfile(file):
+            #Checks if file is an mp3 and if it is, the absolute path will be returned as a string
+            if file.endswith(".mp3"):
+                print("Your MP3 is: " + file)
+                return file
+        else:
+            print("Invalid MP3")
 
 sampleFolder = '/Users/zaydrianprice/desktop/sample-mp3s/'
 filePath = sampleFolder + '01 Fergalicious (Feat. Will.I.Am).mp3'
