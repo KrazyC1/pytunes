@@ -3,22 +3,33 @@ from turtle import title
 from mutagen.easyid3 import EasyID3
 import os
 
+#The main class for the mp3 editor.
 class MP3Editor:
     def __init__(self):
+       #Creates an empty list to fill with mp3s. 
        self.mp3List = [] 
+       #Calls the chooseDirectory() method and assigns its output to a variable
        self.directory = chooseDirectory()
+       #Start of a loop to load mp3s into the empty mp3List.
        for filename in os.listdir(self.directory):
+        #Loops through the given directory and finds files in the with .mp3 extention
         if filename.endswith(".mp3"):
+            #Assigns mp3 into an MP3 object. Currently it only takes the title of the file and puts it into the list
             mp3 = MP3(os.path.join(self.directory,filename)).title
+            #Adds mp3 object to the list of mp3s.
             self.mp3List.append(mp3)
+       #When loop is finished, prints all elements in the loop     
        print(self.mp3List)     
 
+#A function that allows the user to give it a directory's absolute path and check if it is a valid directory.
 def chooseDirectory():
     directory = input("Enter the folder path: ")
     if os.path.isdir(directory):
+        #If the directory is valid, the function will pass the path through and return it as a string.
         print("Your directory is: " + directory)
         return directory
     else:
+        #If directory is not valid, it will do nothing.
         print("Invalid directory")
     
 def chooseMP3():
