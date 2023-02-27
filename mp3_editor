@@ -1,10 +1,7 @@
-# Type 'python3 -m pip install mutagen' to install
 import os
-
+# Type 'python3 -m pip install mutagen' to install
 from mutagen.easyid3 import EasyID3
 
-
-# The main class for the mp3 editor.
 class MP3Editor:
     # MP3Editor constructor
     def __init__(self):
@@ -30,8 +27,8 @@ class MP3Editor:
         print(self.mp3List)
 
 
-sampleFolder = '/Users/zaydrianprice/desktop/sample-mp3s/'
-filePath = sampleFolder + '01 Fergalicious (Feat. Will.I.Am).mp3'
+#sampleFolder = '/Users/zaydrianprice/desktop/sample-mp3s/'
+#filePath = sampleFolder + '01 Fergalicious (Feat. Will.I.Am).mp3'
 
 
 class MP3:
