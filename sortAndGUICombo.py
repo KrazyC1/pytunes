@@ -25,6 +25,7 @@ def upload_file():
     output_text.insert(tk.END, "Selected file: " + file_path + "\n")
     output_text.config(state=tk.DISABLED)
 
+# Sorts music alphabetically based on artist or title of song 
 def sortMusic(music, sortBy):
     if sortBy ==  "artistName":
         sorted_music = sorted(music, key = lambda x: x[0])
@@ -35,8 +36,10 @@ def sortMusic(music, sortBy):
     
 # Sort data function
 def sort_data():
+    #sample data
     music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("ArtistA","SongA","2015",2.54),("ArtistC","SongC","2017",3.24),("Future","Mask Off","2014",3.45)]
     output_text.config(state=tk.NORMAL)
+    # variable holds list of sorted music
     sorted_music = sortMusic(music, "artistName")
     output_text.insert(tk.END, sorted_music,"Data sorted!\n")
     output_text.config(state=tk.DISABLED)
