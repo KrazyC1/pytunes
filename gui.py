@@ -25,11 +25,45 @@ def upload_file():
     output_text.insert(tk.END, "Selected file: " + file_path + "\n")
     output_text.config(state=tk.DISABLED)
 
+# Sorts music alphabetically based on artist or title of song 
+def sortMusic(music, sortBy):
+    if sortBy ==  "artistName":
+        sorted_music = sorted(music, key = lambda x: x[0])
+        return sorted_music
+    elif sortBy == "songName":
+        sorted_music = sorted(music, key = lambda x: x[1])
+        return sorted_music
+
 # Sort data function
 def sort_data():
-    output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Data sorted!\n")
-    output_text.config(state=tk.DISABLED)
+    #sample data
+    music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("ArtistA","SongA","2015",2.54),("ArtistC","SongC","2017",3.24),("Future","Mask Off","2014",3.45)]
+
+    secondary_window = tk.Toplevel()
+    secondary_window.title("Sort By?")
+    secondary_window.config(width=300, height=200)
+    # Create a button to close (destroy) this window.
+    button_song_name = ttk.Button(
+        secondary_window,
+        text="Close window",
+        command=secondary_window.destroy
+        sorted_music = sortMusic(music, "songName")
+        output_text.insert(tk.END, sorted_music,"Data sorted!\n")
+        output_text.config(state=tk.DISABLED)
+    )
+    button_song_name.place(x=0, y=0)
+
+    button_artist_name = ttk.Button(
+        secondary_window
+        text="Sort by Artist Name"
+        command=secondary_window.destroy
+        output_text.config(state=tk.NORMAL)
+        # variable holds list of sorted music
+        sorted_music = sortMusic(music, "artistName")
+        output_text.insert(tk.END, sorted_music,"Data sorted!\n")
+        output_text.config(state=tk.DISABLED)
+    )
+    button_artist_name.place(x=0, y=25)
 
 # Ping / refresh function
 def ping_website():
