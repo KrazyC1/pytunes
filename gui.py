@@ -44,15 +44,16 @@ music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("
 #EXAMPLE DATA
 
 def output_sorted_data(list):
+    output_text.config(state=tk.NORMAL)
+    for item in list:
+        output_text.insert(tk.END, str(item) + "\n")
+    output_text.insert(tk.END, "Data sorted!\n")
+    output_text.config(state=tk.DISABLED)
 
 def sort_song_name():
     # Do something when the button is clicked
     sorted_music = sorted(music, key = lambda x: x[1])
-    output_text.config(state=tk.NORMAL)
-    for item in sorted_music:
-        output_text.insert(tk.END, str(item) + "\n")
-    output_text.insert(tk.END, "Data sorted!\n")
-    output_text.config(state=tk.DISABLED)
+    output_sorted_data(sorted_music)
     print("Sorting by song name...")
     # Close the window
     sort_window.destroy()
@@ -60,11 +61,7 @@ def sort_song_name():
 def sort_artist_name():
     # Do something when the button is clicked
     sorted_music = sorted(music, key = lambda x: x[0])
-    output_text.config(state=tk.NORMAL)
-    for item in sorted_music:
-        output_text.insert(tk.END, str(item) + "\n")
-    output_text.insert(tk.END, "Data sorted!\n")
-    output_text.config(state=tk.DISABLED)
+    output_sorted_data(sorted_music)
     print("Sorting by artist name...")
     # Close the window
     sort_window.destroy()
