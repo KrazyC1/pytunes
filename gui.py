@@ -78,17 +78,17 @@ button_frame = tk.Frame(root)
 button_frame.pack()
 
 # upload file button
-upload_button_image = tk.PhotoImage(file="GUI_assests/upload.png")
+upload_button_image = tk.PhotoImage(file="GUI_assets/upload.png")
 upload_button = tk.Button(button_frame, image=upload_button_image, command=upload_file)
 upload_button.pack(side=tk.LEFT)
 
 # sort data menu button
-sort_button_image = tk.PhotoImage(file="GUI_assests/sort.png")
+sort_button_image = tk.PhotoImage(file="GUI_assets/sort.png")
 sort_button = tk.Button(button_frame, image=sort_button_image, command=sort_data_menu)
 sort_button.pack(side=tk.LEFT)
 
 # refresh button
-ping_button_image = tk.PhotoImage(file="GUI_assests/ping.png")
+ping_button_image = tk.PhotoImage(file="GUI_assets/ping.png")
 ping_button = tk.Button(button_frame, image=ping_button_image, command=ping_website)
 ping_button.pack(side=tk.LEFT)
 
