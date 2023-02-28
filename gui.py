@@ -18,13 +18,6 @@ output_text = tk.Text(root, font=("Arial", 20), height=10)
 output_text.config(state=tk.DISABLED)
 output_text.pack()
 
-# Upload file function
-def upload_file():
-    file_path = filedialog.askopenfilename()
-    output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Selected file: " + file_path + "\n")
-    output_text.config(state=tk.DISABLED)
-
 # Sort data menu function
 def sort_data_menu():
     # Create a new window
@@ -45,6 +38,7 @@ music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("
 
 def output_sorted_data(list):
     output_text.config(state=tk.NORMAL)
+    output_text.delete(1.0, tk.END) #wipes console
     for item in list:
         output_text.insert(tk.END, str(item) + "\n")
     output_text.insert(tk.END, "Data sorted!\n")
@@ -65,6 +59,13 @@ def sort_artist_name():
     print("Sorting by artist name...")
     # Close the window
     sort_window.destroy()
+
+# Upload file function
+def upload_file():
+    file_path = filedialog.askopenfilename()
+    output_text.config(state=tk.NORMAL)
+    output_text.insert(tk.END, "Selected file: " + file_path + "\n")
+    output_text.config(state=tk.DISABLED)
 
 # Ping / refresh function
 def ping_website():
