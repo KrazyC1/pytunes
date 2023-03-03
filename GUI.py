@@ -63,6 +63,7 @@ def sort_artist_name():
 # Upload file function
 def upload_file():
     file_path = filedialog.askopenfilename()
+    #ZAYDRIAN ADD CODE HERE
     output_text.config(state=tk.NORMAL)
     output_text.insert(tk.END, "Selected file: " + file_path + "\n")
     output_text.config(state=tk.DISABLED)
