@@ -1,4 +1,5 @@
 import tkinter as tk
+import mp3
 from tkinter import ttk
 from tkinter import filedialog
 
@@ -33,29 +34,35 @@ def sort_data_menu():
     button2.pack()
 
 #EXAMPLE DATA
-music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("ArtistA","SongA","2015",2.54),("ArtistC","SongC","2017",3.24),("Future","Mask Off","2014",3.45)]
+#music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("ArtistA","SongA","2015",2.54),("ArtistC","SongC","2017",3.24),("Future","Mask Off","2014",3.45)]
 #EXAMPLE DATA
 
-def output_sorted_data(list):
+#Empty list for mp3s
+music = []
+
+def output_sorted_data(list,type):
     output_text.config(state=tk.NORMAL)
     output_text.delete(1.0, tk.END) #wipes console
     for item in list:
-        output_text.insert(tk.END, str(item) + "\n")
+        if type == 'title':
+            output_text.insert(tk.END, str(item.title) + "\n")
+        elif type == 'artist':
+            output_text.insert(tk.END, str(item.artist) + "\n")
     output_text.insert(tk.END, "Data sorted!\n")
     output_text.config(state=tk.DISABLED)
 
 def sort_song_name():
     # Do something when the button is clicked
-    sorted_music = sorted(music, key = lambda x: x[1])
-    output_sorted_data(sorted_music)
+    sorted_music = sorted(music, key = lambda x: x.title)
+    output_sorted_data(sorted_music,'title')
     print("Sorting by song name...")
     # Close the window
     sort_window.destroy()
 
 def sort_artist_name():
     # Do something when the button is clicked
-    sorted_music = sorted(music, key = lambda x: x[0])
-    output_sorted_data(sorted_music)
+    sorted_music = sorted(music, key = lambda x: x.artist)
+    output_sorted_data(sorted_music,'artist')
     print("Sorting by artist name...")
     # Close the window
     sort_window.destroy()
@@ -63,9 +70,9 @@ def sort_artist_name():
 # Upload file function
 def upload_file():
     file_path = filedialog.askopenfilename()
-    #ZAYDRIAN ADD CODE HERE
+    music.append(mp3.Mp3(file_path))
     output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Selected file: " + file_path + "\n")
+    output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
     output_text.config(state=tk.DISABLED)
 
 # Ping / refresh function
