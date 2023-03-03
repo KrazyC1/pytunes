@@ -11,4 +11,7 @@ music.append(mp3.Mp3(FILE_PATH_2))
 print(music[0].title)
 print(music[1].title)
 
+music[0].set_genre('')
+print(music[0].genre)
+
 
