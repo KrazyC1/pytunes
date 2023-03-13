@@ -44,6 +44,7 @@ for track in sp.playlist_tracks(playlist_URI)["items"]:
     temp = [track_name, artist_name, artist_pop, artist_genres, album, track_pop]
     all_tracks.append(temp)
 
-print(all_tracks)
-print("now printing entry one:")
+for track in all_tracks:
+    print(track)
+print("Now printing first entry in list")
 print(all_tracks[0])
