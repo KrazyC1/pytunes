@@ -52,5 +52,10 @@ for track in sp.playlist_tracks(playlist_URI)["items"]:
     print("\n")
     
     
+    ##LOOP
+    tracknames = list()
+    temp = [track_name]
+    tracknames.append(temp)
 
-    
+
+print(tracknames)
