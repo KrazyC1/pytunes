@@ -17,44 +17,33 @@ playlist_link = "https://open.spotify.com/playlist/37i9dQZEVXbNG2KDcFcKOF?si=133
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
 track_uris = [x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI)["items"]]
 
-tracknames = []
-#extract information and print
+all_tracks = []
 for track in sp.playlist_tracks(playlist_URI)["items"]:
-    #URI
+    # URI
     track_uri = track["track"]["uri"]
-    
-    #Track name
+
+    # Track name
     track_name = track["track"]["name"]
-    
-    #Main Artist
+
+    # Main Artist
     artist_uri = track["track"]["artists"][0]["uri"]
     artist_info = sp.artist(artist_uri)
-    
-    
-    #Name, popularity, genre
+
+    # Name, popularity, genre
     artist_name = track["track"]["artists"][0]["name"]
     artist_pop = artist_info["popularity"]
     artist_genres = artist_info["genres"]
-    
-    
-    #Album
+
+    # Album
     album = track["track"]["album"]["name"]
-    
-    #Popularity of the track
+
+    # Popularity of the track
     track_pop = track["track"]["popularity"]
-    
-    print(track_name,end=" , ")
-    print(artist_name,end=" , ")
-    print(artist_pop,end=" , ")
-    print(artist_genres,end=" , ")
-    print(album,end=" , ")
-    print(track_pop,end=" , ")
-    print("\n")
-    
-    
-    ##LOOP
-    temp = [track_name]
-    tracknames.append(temp)
 
+    # Append all details to a list
+    temp = [track_name, artist_name, artist_pop, artist_genres, album, track_pop]
+    all_tracks.append(temp)
 
-print(tracknames)
+print(all_tracks)
+print("now printing entry one:")
+print(all_tracks[0])
