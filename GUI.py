@@ -28,10 +28,12 @@ def sort_data_menu():
     # Create two buttons
     button1 = tk.Button(sort_window, text="Sort by Song Name", command=sort_song_name)
     button2 = tk.Button(sort_window, text="Sort by Artist Name", command=sort_artist_name)
+    button3 = tk.Button(sort_window, text="Sort by Song Album", command=sort_song_album)
 
     # Add the buttons to the window
     button1.pack()
     button2.pack()
+    button3.pack()
 
 #EXAMPLE DATA
 #music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("ArtistA","SongA","2015",2.54),("ArtistC","SongC","2017",3.24),("Future","Mask Off","2014",3.45)]
@@ -48,6 +50,8 @@ def output_sorted_data(list,type):
             output_text.insert(tk.END, str(item.title) + "\n")
         elif type == 'artist':
             output_text.insert(tk.END, str(item.artist) + "\n")
+        elif type == 'album':
+            output_text.insert(tk.END, str(item.album) + "\n")
     output_text.insert(tk.END, "Data sorted!\n")
     output_text.config(state=tk.DISABLED)
 
@@ -64,6 +68,14 @@ def sort_artist_name():
     sorted_music = sorted(music, key = lambda x: x.artist)
     output_sorted_data(sorted_music,'artist')
     print("Sorting by artist name...")
+    # Close the window
+    sort_window.destroy()
+    
+def sort_song_album():
+    # Do something when the button is clicked
+    sorted_music = sorted(music, key = lambda x: x.album)
+    output_sorted_data(sorted_music,'album')
+    print("Sorting by song album...")
     # Close the window
     sort_window.destroy()
 
