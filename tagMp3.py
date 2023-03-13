@@ -17,7 +17,7 @@ playlist_link = "https://open.spotify.com/playlist/37i9dQZEVXbNG2KDcFcKOF?si=133
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
 track_uris = [x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI)["items"]]
 
-
+tracknames = []
 #extract information and print
 for track in sp.playlist_tracks(playlist_URI)["items"]:
     #URI
@@ -53,7 +53,6 @@ for track in sp.playlist_tracks(playlist_URI)["items"]:
     
     
     ##LOOP
-    tracknames = list()
     temp = [track_name]
     tracknames.append(temp)
 
