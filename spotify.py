@@ -25,28 +25,27 @@ class Spotify:
                 for j in range(len(list_of_tracks)):
                     if (list_of_tracks['items'][j]['name']==music.title):
                         artist_name = artist['name']
-                        print(artist_name)
                         artist_genres = artist['genres']
-                        print(artist_genres)
                         track_name = list_of_tracks['items'][j]['name']
-                        print(track_name)
                         album_name = list_of_albums[i]['name']
-                        print(album_name)
                         track_id = list_of_tracks['items'][j]['id']
-                        return artist_name,artist_genres,track_name,album_name,track_id
+                        results = {'artist': artist_name, 'genre': artist_genres,'title': track_name, 'album': album_name,'track id': track_id}
+                        return results
                         break
                 break 
     
-    # def sync_mp3_with_spotify(self,mp3):
-    #   search_results = self.search(mp3)
-    #  mp3.set_title(str(search_results.track_name))       
+    def sync_spotify(self,mp3):
+       search_results = self.search(mp3)
+       mp3.set_title(str(search_results['title']))
+       mp3.set_artist(str(search_results['artist']))
+       mp3.set_album(str(search_results['album']))
+       mp3.set_genre(str(search_results['genre']))     
                         
-                
-        
 home = '/Users/zaydrianprice/Documents'
 spotify_tagger = '/spotify-tagger/music'
 test_file = home + spotify_tagger + '/01 Fergalicious (Feat. Will.I.Am).mp3'
 test_music = mp3.Mp3(test_file)
 test_spotify=Spotify()
 test_spotify.search(test_music)
-#test_spotify.sync_mp3_with_spotify(test_music)
+test_spotify.sync_spotify(test_music)
+print(test_music)
