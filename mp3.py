@@ -32,8 +32,8 @@ class Mp3:
         
     def __str__(self):
         """Returns a string of title, artist, album, and genre"""
-        return f"Title: {self.title}\nArtist: {self.artist}\n\
-            Album: {self.album}\nGenre: {self.genre}"
+        return f"Title: {self.title}\nArtist: {self.artist}\
+            \nAlbum: {self.album}\nGenre: {self.genre}"
 
     def set_title(self, new_title):
         """
