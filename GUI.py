@@ -21,6 +21,7 @@ output_text.pack()
 
 # Sort data menu function
 def sort_data_menu():
+    """A function for the sort data menu."""
     # Create a new window
     global sort_window
     sort_window = tk.Toplevel()
@@ -56,7 +57,7 @@ def output_sorted_data(list,type):
     output_text.config(state=tk.DISABLED)
 
 def sort_song_name():
-    # Do something when the button is clicked
+    """A function that will sort songs by name when the sort button is clicked"""
     sorted_music = sorted(music, key = lambda x: x.title)
     output_sorted_data(sorted_music,'title')
     print("Sorting by song name...")
@@ -64,7 +65,7 @@ def sort_song_name():
     sort_window.destroy()
 
 def sort_artist_name():
-    # Do something when the button is clicked
+    """A function that will sort songs by artist when the sort button is clicked."""
     sorted_music = sorted(music, key = lambda x: x.artist)
     output_sorted_data(sorted_music,'artist')
     print("Sorting by artist name...")
@@ -72,7 +73,7 @@ def sort_artist_name():
     sort_window.destroy()
     
 def sort_song_album():
-    # Do something when the button is clicked
+    """A function that will sort songs by album when the sort button is clicked."""
     sorted_music = sorted(music, key = lambda x: x.album)
     output_sorted_data(sorted_music,'album')
     print("Sorting by song album...")
@@ -81,6 +82,7 @@ def sort_song_album():
 
 # Upload file function
 def upload_file():
+    """A function that allows the user to upload .mp3 files into the program."""
     file_path = filedialog.askopenfilename()
     music.append(mp3.Mp3(file_path))
     output_text.config(state=tk.NORMAL)
@@ -89,6 +91,7 @@ def upload_file():
 
 # Ping / refresh function
 def ping_website():
+    """A function to ping/refresh."""
     output_text.config(state=tk.NORMAL)
     output_text.insert(tk.END, "Refreshing Data...\n")
     output_text.config(state=tk.DISABLED)
