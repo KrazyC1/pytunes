@@ -108,8 +108,8 @@ sort_button_image = tk.PhotoImage(file="GUI_assets/sort.png")
 sort_button = tk.Button(button_frame, image=sort_button_image, command=sort_data_menu)
 sort_button.pack(side=tk.LEFT)
 
-# refresh button
-ping_button_image = tk.PhotoImage(file="GUI_assets/ping.png")
+# sync button
+ping_button_image = tk.PhotoImage(file="GUI_assets/sync.png")
 ping_button = tk.Button(button_frame, image=ping_button_image, command=ping_website)
 ping_button.pack(side=tk.LEFT)
 
