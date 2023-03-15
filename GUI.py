@@ -84,6 +84,7 @@ def upload_file():
     file_path = filedialog.askopenfilename()
     music.append(mp3.Mp3(file_path))
     output_text.config(state=tk.NORMAL)
+    output_text.delete(1.0, tk.END) #wipes console
     output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
     output_text.config(state=tk.DISABLED)
 
