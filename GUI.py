@@ -91,7 +91,7 @@ def upload_file():
 # Ping / refresh function
 def ping_website():
     output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Refreshing Data...\n")
+    output_text.insert(tk.END, "Syncing Data...\n")
     output_text.config(state=tk.DISABLED)
 
 # Frame for buttons
