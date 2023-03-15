@@ -2,7 +2,9 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 import mp3
 class Spotify:
+    """This class is used to allow mp3 objects to interact with Spotify's API."""
     def __init__(self):
+        """This function is the default constructor of the class that sets up the Spotify API's credentials."""
         #Client ID
         self.ci = "cb6906d5bc1c4f80bbeb8006ec63bf42"
 
@@ -14,6 +16,15 @@ class Spotify:
         self.sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     
     def search(self,mp3):
+        """
+            This fuctions allows you to search for a specific track from Spotify's API using the variables in the given mp3 object. It will first search for the artist, then the album, and then the track name.
+
+        Args:
+            mp3 (mp3): The mp3 object used to search Spotifys API.
+
+        Returns:
+            results (dict): A dictionary with the results of the search.
+        """
         music = mp3
         search_result = dict(self.sp.search(music.artist,limit=1,type='artist'))
         artist = search_result['artists']['items'][0]
@@ -35,17 +46,14 @@ class Spotify:
                 break 
     
     def sync_spotify(self,mp3):
-       search_results = self.search(mp3)
-       mp3.set_title(str(search_results['title']))
-       mp3.set_artist(str(search_results['artist']))
-       mp3.set_album(str(search_results['album']))
-       mp3.set_genre(str(search_results['genre']))     
-                        
-home = '/Users/zaydrianprice/Documents'
-spotify_tagger = '/spotify-tagger/music'
-test_file = home + spotify_tagger + '/01 Fergalicious (Feat. Will.I.Am).mp3'
-test_music = mp3.Mp3(test_file)
-test_spotify=Spotify()
-test_spotify.search(test_music)
-test_spotify.sync_spotify(test_music)
-print(test_music)
+        """
+            This function uses the search() method to take an mp3, search for the track in Spotify's API, and replace the title, artist, album, and genre tags on the mp3 to be the same as what is on Spotify.
+        Args:
+            mp3 (mp3): The mp3 object used to search Spotifys API and sync the metadat with.
+        """
+        search_results = self.search(mp3)
+        mp3.set_title(str(search_results['title']))
+        mp3.set_artist(str(search_results['artist']))
+        mp3.set_album(str(search_results['album']))
+        mp3.set_genre(str(search_results['genre']))     
+       
