@@ -90,9 +90,9 @@ def upload_file():
     output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
     output_text.config(state=tk.DISABLED)
 
-# Ping / refresh function
-def ping_website():
-    """A function to ping/refresh."""
+# sync / refresh function
+def sync_website():
+    """A function to sync data."""
     output_text.config(state=tk.NORMAL)
     output_text.insert(tk.END, "Syncing Data...\n")
     output_text.config(state=tk.DISABLED)
@@ -113,7 +113,7 @@ sort_button.pack(side=tk.LEFT)
 
 # sync button
 ping_button_image = tk.PhotoImage(file="GUI_assets/sync.png")
-ping_button = tk.Button(button_frame, image=ping_button_image, command=ping_website)
+ping_button = tk.Button(button_frame, image=ping_button_image, command=sync_website)
 ping_button.pack(side=tk.LEFT)
 
 # start
