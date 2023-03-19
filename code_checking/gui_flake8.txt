@@ -1,0 +1,42 @@
+gui.py:3:1: F401 'tkinter.ttk' imported but unused
+gui.py:23:1: E302 expected 2 blank lines, found 1
+gui.py:30:80: E501 line too long (86 > 79 characters)
+gui.py:31:80: E501 line too long (90 > 79 characters)
+gui.py:32:80: E501 line too long (88 > 79 characters)
+gui.py:39:1: E265 block comment should start with '# '
+gui.py:40:1: E265 block comment should start with '# '
+gui.py:40:80: E501 line too long (177 > 79 characters)
+gui.py:41:1: E265 block comment should start with '# '
+gui.py:43:1: E265 block comment should start with '# '
+gui.py:44:1: E305 expected 2 blank lines after class or function definition, found 1
+gui.py:46:1: E302 expected 2 blank lines, found 1
+gui.py:46:28: E231 missing whitespace after ','
+gui.py:48:36: E261 at least two spaces before inline comment
+gui.py:48:37: E262 inline comment should start with '# '
+gui.py:59:1: E302 expected 2 blank lines, found 1
+gui.py:60:80: E501 line too long (81 > 79 characters)
+gui.py:61:37: E251 unexpected spaces around keyword / parameter equals
+gui.py:61:39: E251 unexpected spaces around keyword / parameter equals
+gui.py:62:36: E231 missing whitespace after ','
+gui.py:67:1: E302 expected 2 blank lines, found 1
+gui.py:68:80: E501 line too long (84 > 79 characters)
+gui.py:69:37: E251 unexpected spaces around keyword / parameter equals
+gui.py:69:39: E251 unexpected spaces around keyword / parameter equals
+gui.py:70:36: E231 missing whitespace after ','
+gui.py:74:1: W293 blank line contains whitespace
+gui.py:75:1: E302 expected 2 blank lines, found 1
+gui.py:76:80: E501 line too long (83 > 79 characters)
+gui.py:77:37: E251 unexpected spaces around keyword / parameter equals
+gui.py:77:39: E251 unexpected spaces around keyword / parameter equals
+gui.py:78:36: E231 missing whitespace after ','
+gui.py:84:1: E302 expected 2 blank lines, found 1
+gui.py:85:80: E501 line too long (80 > 79 characters)
+gui.py:89:36: E261 at least two spaces before inline comment
+gui.py:89:37: E262 inline comment should start with '# '
+gui.py:90:80: E501 line too long (83 > 79 characters)
+gui.py:94:1: E302 expected 2 blank lines, found 1
+gui.py:101:1: E305 expected 2 blank lines after class or function definition, found 1
+gui.py:106:80: E501 line too long (87 > 79 characters)
+gui.py:111:80: E501 line too long (86 > 79 characters)
+gui.py:116:80: E501 line too long (84 > 79 characters)
+gui.py:120:16: W292 no newline at end of file

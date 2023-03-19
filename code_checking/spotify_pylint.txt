@@ -1,0 +1,17 @@
+************* Module spotify
+spotify.py:18:75: C0303: Trailing whitespace (trailing-whitespace)
+spotify.py:21:53: C0303: Trailing whitespace (trailing-whitespace)
+spotify.py:46:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+spotify.py:50:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+spotify.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+spotify.py:13:8: C0103: Attribute name "ci" doesn't conform to snake_case naming style (invalid-name)
+spotify.py:16:8: C0103: Attribute name "cs" doesn't conform to snake_case naming style (invalid-name)
+spotify.py:23:8: C0103: Attribute name "sp" doesn't conform to snake_case naming style (invalid-name)
+spotify.py:26:4: R0914: Too many local variables (16/15) (too-many-locals)
+spotify.py:45:8: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+spotify.py:60:24: W0101: Unreachable code (unreachable)
+spotify.py:26:4: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+
+------------------------------------------------------------------
+Your code has been rated at 6.47/10 (previous run: 6.47/10, +0.00)
+

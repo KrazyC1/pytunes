@@ -1,0 +1,5 @@
+mp3.py:7:77: W291 trailing whitespace
+mp3.py:14:75: W291 trailing whitespace
+mp3.py:18:67: W291 trailing whitespace
+mp3.py:62:69: W291 trailing whitespace
+mp3.py:72:75: W291 trailing whitespace
