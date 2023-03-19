@@ -1,6 +1,7 @@
-import os
 # Type 'python3 -m pip install mutagen' to install
 from mutagen.easyid3 import EasyID3
+
+
 class Mp3:
     """
         This is a class that creates an mp3 object from an .mp3 file so that 
@@ -29,7 +30,7 @@ class Mp3:
         """A string that holds the mp3's album title."""
         self.genre = str(self.audio.get('genre', [''])[0])
         """A string that holds the mp3's genre(s)."""
-        
+
     def __str__(self):
         """Returns a string of title, artist, album, and genre"""
         return f"Title: {self.title}\nArtist: {self.artist}\
@@ -48,7 +49,8 @@ class Mp3:
         """
             This function is a setter for the .mp3's artist tag.
         Args:
-            new_artist (string): This is the name of the new artist to give to the .mp3 file.
+            new_artist (string): This is the name of the new artist to
+            give to the .mp3 file.
         """
         self.audio['artist'] = str(new_artist)
         self.audio.save()
@@ -57,7 +59,8 @@ class Mp3:
         """
             This function is a setter for the .mp3's album tag.
         Args:
-            new_album (string): This is the name of the new album to give to the .mp3 file.
+            new_album (string): This is the name of the new album to 
+            give to the .mp3 file.
         """
         self.audio['album'] = str(new_album)
         self.audio.save()
@@ -66,7 +69,8 @@ class Mp3:
         """
             This function is the setter for the the .mp3's genre tag.
         Args:
-            new_genre (string): This is the new name(s) of the genre(s) to give to the .mp3 file.
+            new_genre (string): This is the new name(s) of the genre(s) to 
+            give to the .mp3 file.
         """
         self.audio['genre'] = str(new_genre)
         self.audio.save()
