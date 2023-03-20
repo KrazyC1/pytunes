@@ -83,11 +83,12 @@ def sort_song_album():
 # Upload file function
 def upload_file():
     """A function that allows the user to upload .mp3 files into the program."""
-    file_path = filedialog.askopenfilename()
-    music.append(mp3.Mp3(file_path))
-    output_text.config(state=tk.NORMAL)
-    output_text.delete(1.0, tk.END) #wipes console
-    output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
+    file_paths = filedialog.askopenfilenames()
+    for file_path in file_paths:
+        music.append(mp3.Mp3(file_path))
+        output_text.config(state=tk.NORMAL)
+        output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
+    output_text.insert(tk.END, "All files selected.\n")
     output_text.config(state=tk.DISABLED)
 
 # sync / refresh function
