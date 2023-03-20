@@ -1,0 +1,132 @@
+pdocs OUTPUT
+
+Module GUI
+==========
+Functions
+---------
+
+
+`output_sorted_data(list, type)`
+:
+
+
+`sort_artist_name()`
+:   A function that will sort songs by artist when the sort button is clicked.
+
+
+`sort_data_menu()`
+:   A function for the sort data menu.
+
+
+`sort_song_album()`
+:   A function that will sort songs by album when the sort button is clicked.
+
+
+`sort_song_name()`
+:   A function that will sort songs by name when the sort button is clicked
+
+
+`sync_website()`
+:   A function to sync data.
+
+
+`upload_file()`
+:   A function that allows the user to upload .mp3 files into the program.
+
+Module spotify
+==============
+
+Classes
+-------
+
+`Spotify()`
+:   This class is used to allow mp3 objects to interact with
+    Spotify's API.
+
+    This function is the default constructor of the class that
+    sets up the Spotify API's credentials.
+
+    ### Methods
+
+    `search(self, mp3)`
+    :   This fuctions allows you to search for a specific track from
+            Spotify's API using the variables in the given mp3 object.
+            It will first search for the artist, then the album, and then
+            the track name.
+
+Module mp3
+==========
+
+Classes
+-------
+
+`Mp3(file_path)`
+:   This is a class that creates an mp3 object from an .mp3 file so that
+    Pytunes can manipulate the mp3 files ID3 tags.    
+
+    This fuction is the default contructor of Mp3 class. It will
+    take in a file path and extract the song title, artist, album,
+    and genre from the .mp3 file it is given.
+
+    Args:
+        file_path (string): The file path of the mp3 to be
+        manipulated.
+
+    ### Instance variables
+
+    `album`
+    :   A string that holds the mp3's album title.    
+
+    `artist`
+    :   A string that holds the mp3's artist name.    
+
+    `audio`
+    :   The .mp3 file that is pulled from the file path.
+
+    `file_path`
+    :   A string that holds the mp3's file path.      
+
+    `genre`
+    :   A string that holds the mp3's genre(s).       
+
+    `title`
+    :   A string that holds the mp3's song title.     
+
+    ### Methods
+
+    `set_album(self, new_album)`
+    :   This function is a setter for the .mp3's album tag.
+        Args:
+            new_album (string): This is the name of the new album to
+            give to the .mp3 file.
+
+    `set_artist(self, new_artist)`
+    :   This function is a setter for the .mp3's artist tag.
+        Args:
+            new_artist (string): This is the name of the new artist to
+            give to the .mp3 file.
+
+    `set_genre(self, new_genre)`
+    :   This function is the setter for the the .mp3's genre tag.
+        Args:
+            new_genre (string): This is the new name(s) of the genre(s) to
+            give to the .mp3 file.
+
+    `set_title(self, new_title)`
+    :   This fuction is a setter for the .mp3's title tag.
+        Args:
+            new_title (string): This is the new title to give the .mp3 file.
+
+        Args:
+            mp3 (mp3): The mp3 object used to search Spotifys API.
+
+        Returns:
+            results (dict): A dictionary with the results of the search.
+
+    `sync_spotify(self, mp3)`
+    :   This function uses the search() method to take an mp3, search for
+            the track in Spotify's API, and replace the title, artist, album,
+            and genre tags on the mp3 to be the same as what is on Spotify.
+        Args:
+            mp3 (mp3): The mp3 object used to search Spotifys API and sync the
+            metadata with.
