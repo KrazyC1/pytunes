@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "lextudio.restructuredtext",
+        "ms-python.flake8"
+    ]
+}
