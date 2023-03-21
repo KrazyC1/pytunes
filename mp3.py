@@ -74,3 +74,19 @@ class Mp3:
         """
         self.audio['genre'] = str(new_genre)
         self.audio.save()
+        
+    def get_title(self):
+        """A function that returns the mp3's title."""
+        return self.title
+    
+    def get_artist(self):
+        """A function that returns the mp3's artist."""
+        return self.artist
+    
+    def get_album(self):
+        """A function that returns the mp3's album."""
+        return self.album
+    
+    def get_genre(self):
+        """A function that returns the mp3's genre."""
+        return self.genre
