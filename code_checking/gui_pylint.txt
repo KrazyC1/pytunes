@@ -1,0 +1,16 @@
+************* Module gui
+gui.py:40:0: C0301: Line too long (177/100) (line-too-long)
+gui.py:74:0: C0303: Trailing whitespace (trailing-whitespace)
+gui.py:120:0: C0304: Final newline missing (missing-final-newline)
+gui.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+gui.py:26:4: W0601: Global variable 'sort_window' undefined at the module level (global-variable-undefined)
+gui.py:46:0: C0116: Missing function or method docstring (missing-function-docstring)
+gui.py:46:23: W0622: Redefining built-in 'list' (redefined-builtin)
+gui.py:46:28: W0622: Redefining built-in 'type' (redefined-builtin)
+gui.py:3:0: C0411: standard import "from tkinter import ttk" should be placed before "import mp3" (wrong-import-order)
+gui.py:4:0: C0411: standard import "from tkinter import filedialog" should be placed before "import mp3" (wrong-import-order)
+gui.py:3:0: W0611: Unused ttk imported from tkinter (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 8.47/10 (previous run: 8.47/10, +0.00)
+
