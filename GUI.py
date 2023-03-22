@@ -52,7 +52,9 @@ search_bar_frame = tk.Frame(root, bg='#1a1a1a')
 search_bar_frame.pack(pady=10)
 
 # Search bar entry
-search_entry = tk.Entry(search_bar_frame, width=30, font=("Arial", 14), bg='#2b2b2b', fg='#ffffff')
+style = ttk.Style()
+style.configure("TEntry", fieldbackground='#2b2b2b', background='#2b2b2b', foreground='#000000', bordercolor='#2b2b2b', lightcolor='#2b2b2b', darkcolor='#2b2b2b', borderwidth=20, relief=tk.GROOVE)
+search_entry = ttk.Entry(search_bar_frame, width=30, font=("Arial", 14), style='TEntry')
 search_entry.pack(side=tk.LEFT, padx=5, pady=5)
 
 # Search button
