@@ -3,21 +3,38 @@ import mp3
 from tkinter import ttk
 from tkinter import filedialog
 
+# Custom button class for hover effect
+class HoverButton(tk.Button):
+    def __init__(self, master, **kw):
+        tk.Button.__init__(self, master=master, **kw)
+        self.default_background = self["background"]
+        self.bind("<Enter>", self.on_enter)
+        self.bind("<Leave>", self.on_leave)
+
+    def on_enter(self, e):
+        self["background"] = self["activebackground"]
+
+    def on_leave(self, e):
+        self["background"] = self.default_background
+
 # Window creation
 root = tk.Tk()
 root.title("Pytunes")
+
+# Set background color
+root.configure(bg='#1a1a1a')
 
 # Window size
 root.geometry("675x450")
 
 # Label for the output field
-output_label = tk.Label(root, text="Output:", font=("Arial", 20))
-output_label.pack()
+output_label = tk.Label(root, text="Output:", font=("Arial", 20), bg='#1a1a1a', fg='#ffffff')
+output_label.pack(pady=10)
 
 # Output field
-output_text = tk.Text(root, font=("Arial", 20), height=10)
+output_text = tk.Text(root, font=("Arial", 14), height=12, wrap=tk.WORD, bg='#2b2b2b', fg='#ffffff')
 output_text.config(state=tk.DISABLED)
-output_text.pack()
+output_text.pack(pady=10, padx=10)
 
 # Sort data menu function
 def sort_data_menu():
@@ -111,23 +128,23 @@ def sync_website():
     output_text.config(state=tk.DISABLED)
 
 # Frame for buttons
-button_frame = tk.Frame(root)
-button_frame.pack()
+button_frame = tk.Frame(root, bg='#1a1a1a')
+button_frame.pack(pady=10)
 
 # upload file button
 upload_button_image = tk.PhotoImage(file="GUI_assets/upload.png")
-upload_button = tk.Button(button_frame, image=upload_button_image, command=upload_file)
-upload_button.pack(side=tk.LEFT)
+upload_button = HoverButton(button_frame, image=upload_button_image, command=upload_file, bg='#3b3b3b', activebackground='#4b4b4b')
+upload_button.pack(side=tk.LEFT, padx=5)
 
 # sort data menu button
 sort_button_image = tk.PhotoImage(file="GUI_assets/sort.png")
-sort_button = tk.Button(button_frame, image=sort_button_image, command=sort_data_menu)
-sort_button.pack(side=tk.LEFT)
+sort_button = HoverButton(button_frame, image=sort_button_image, command=sort_data_menu, bg='#3b3b3b', activebackground='#4b4b4b')
+sort_button.pack(side=tk.LEFT, padx=5)
 
 # sync button
 ping_button_image = tk.PhotoImage(file="GUI_assets/sync.png")
-ping_button = tk.Button(button_frame, image=ping_button_image, command=sync_website)
-ping_button.pack(side=tk.LEFT)
+ping_button = HoverButton(button_frame, image=ping_button_image, command=sync_website, bg='#3b3b3b', activebackground='#4b4b4b')
+ping_button.pack(side=tk.LEFT, padx=5)
 
 # start
 root.mainloop()
