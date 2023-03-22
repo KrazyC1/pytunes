@@ -1,5 +1,6 @@
 import tkinter as tk
 import mp3
+import spotify
 from tkinter import ttk
 from tkinter import filedialog
 
@@ -106,8 +107,12 @@ def upload_file():
 # sync / refresh function
 def sync_website():
     """A function to sync data."""
+    spot = spotify.Spotify()
     output_text.config(state=tk.NORMAL)
     output_text.insert(tk.END, "Syncing Data...\n")
+    for i, mp3 in enumerate(music):
+        spot.sync_spotify(mp3)
+    output_text.insert(tk.END, "Sync Complete\n")
     output_text.config(state=tk.DISABLED)
 
 # Frame for buttons
