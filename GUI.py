@@ -27,8 +27,11 @@ root.configure(bg='#1a1a1a')
 # Window size
 root.geometry("675x450")
 
+# Load the image for the output label
+output_image = tk.PhotoImage(file="GUI_assets/Pytunes_banner.png")
+
 # Label for the output field
-output_label = tk.Label(root, text="Output:", font=("Arial", 20), bg='#1a1a1a', fg='#ffffff')
+output_label = tk.Label(root, image=output_image, bg='#1a1a1a')
 output_label.pack(pady=10)
 
 # Output field
