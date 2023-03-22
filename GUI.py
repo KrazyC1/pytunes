@@ -25,7 +25,7 @@ root.title("Pytunes")
 root.configure(bg='#1a1a1a')
 
 # Window size
-root.geometry("675x450")
+root.geometry("675x550")
 
 # Load the image for the output label
 output_image = tk.PhotoImage(file="GUI_assets/Pytunes_banner.png")
@@ -33,6 +33,36 @@ output_image = tk.PhotoImage(file="GUI_assets/Pytunes_banner.png")
 # Label for the output field
 output_label = tk.Label(root, image=output_image, bg='#1a1a1a')
 output_label.pack(pady=10)
+
+# Search button
+def search_music():
+    """A function to search for music."""
+    search_term = search_entry.get()
+    if search_term:
+        matching_music = [item for item in music if search_term.lower() in item.title.lower() or search_term.lower() in item.artist.lower() or search_term.lower() in item.album.lower() or search_term.lower() in item.genre.lower()]
+        output_sorted_data(matching_music,'title')
+    else:
+        output_text.config(state=tk.NORMAL)
+        output_text.delete(1.0, tk.END)
+        output_text.insert(tk.END, "Please enter a search term.\n")
+        output_text.config(state=tk.DISABLED)
+
+# Search bar frame
+search_bar_frame = tk.Frame(root, bg='#1a1a1a')
+search_bar_frame.pack(pady=10)
+
+# Search bar entry
+search_entry = tk.Entry(search_bar_frame, width=30, font=("Arial", 14), bg='#2b2b2b', fg='#ffffff')
+search_entry.pack(side=tk.LEFT, padx=5, pady=5)
+
+# Search button
+search_button_image = tk.PhotoImage(file="GUI_assets/search.png")
+search_button = HoverButton(search_bar_frame, image=search_button_image, command=search_music, bg='#3b3b3b', activebackground='#4b4b4b')
+search_button.pack(side=tk.LEFT, padx=5, pady=5)
+
+# Center the search bar
+search_bar_frame.pack(anchor='center')
+
 
 # Output field
 output_text = tk.Text(root, font=("Arial", 14), height=12, wrap=tk.WORD, bg='#2b2b2b', fg='#ffffff')
@@ -120,7 +150,7 @@ def upload_file():
         music.append(mp3.Mp3(file_path))
         output_text.config(state=tk.NORMAL)
         output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
-    output_text.insert(tk.END, "All files selected.\n")
+    output_text.insert(tk.END, "Files selected.\n")
     output_text.config(state=tk.DISABLED)
 
 # sync / refresh function
