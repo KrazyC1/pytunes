@@ -42,10 +42,7 @@ def search_music():
         matching_music = [item for item in music if search_term.lower() in item.title.lower() or search_term.lower() in item.artist.lower() or search_term.lower() in item.album.lower() or search_term.lower() in item.genre.lower()]
         output_sorted_data(matching_music,'title')
     else:
-        output_text.config(state=tk.NORMAL)
-        output_text.delete(1.0, tk.END)
-        output_text.insert(tk.END, "Please enter a search term.\n")
-        output_text.config(state=tk.DISABLED)
+        print("Please enter a search term.")
 
 # Search bar frame
 search_bar_frame = tk.Frame(root, bg='#1a1a1a')
@@ -64,9 +61,7 @@ search_button.pack(side=tk.LEFT, padx=5, pady=5)
 
 # Switch button
 def switch_function():
-    output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Switch\n")
-    output_text.config(state=tk.DISABLED)
+    print("Switch Descending / Ascending")
 
 switch_button_image = tk.PhotoImage(file="GUI_assets/switch.png")
 switch_button = HoverButton(search_bar_frame, image=switch_button_image, command=switch_function, bg='#3b3b3b', activebackground='#4b4b4b')
@@ -76,10 +71,12 @@ switch_button.pack(side=tk.RIGHT, padx=5, pady=5)
 # Center the search bar
 search_bar_frame.pack(anchor='center')
 
-# Output field
-output_text = tk.Text(root, font=("Arial", 14), height=12, wrap=tk.WORD, bg='#2b2b2b', fg='#ffffff')
-output_text.config(state=tk.DISABLED)
-output_text.pack(pady=10, padx=10)
+# Output field - Replacing the Text widget with a Treeview widget
+columns = ("Title", "Artist", "Album", "Genre", "Length")
+output_tree = ttk.Treeview(root, columns=columns, show="headings")
+for col in columns:
+    output_tree.heading(col, text=col)
+output_tree.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 
 # Sort data menu function
 def sort_data_menu():
@@ -107,20 +104,11 @@ def sort_data_menu():
 #Empty list for mp3s
 music = []
 
-def output_sorted_data(list,type):
-    output_text.config(state=tk.NORMAL)
-    output_text.delete(1.0, tk.END) #wipes console
+def output_sorted_data(list, type):
+    output_tree.delete(*output_tree.get_children())  # Clears existing rows
     for item in list:
-        if type == 'title':
-            output_text.insert(tk.END, str(item.title) + "\n")
-        elif type == 'artist':
-            output_text.insert(tk.END, str(item.artist) + "\n")
-        elif type == 'album':
-            output_text.insert(tk.END, str(item.album) + "\n")
-        elif type == 'genre':
-            output_text.insert(tk.END, str(item.genre) + "\n")
-    output_text.insert(tk.END, "Data sorted!\n")
-    output_text.config(state=tk.DISABLED)
+        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre)) # Removed 'item.duration'
+
 
 def sort_song_name():
     """A function that will sort songs by name when the sort button is clicked"""
@@ -160,17 +148,12 @@ def upload_file():
     file_paths = filedialog.askopenfilenames()
     for file_path in file_paths:
         music.append(mp3.Mp3(file_path))
-        output_text.config(state=tk.NORMAL)
-        output_text.insert(tk.END, "Selected file:\n" + str(mp3.Mp3(file_path)) + "\n")
-    output_text.insert(tk.END, "Files selected.\n")
-    output_text.config(state=tk.DISABLED)
+        output_sorted_data(music, 'title')
 
 # sync / refresh function
 def sync_website():
     """A function to sync data."""
-    output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Syncing Data...\n")
-    output_text.config(state=tk.DISABLED)
+    print("Syncing Data...")
 
 # Frame for buttons
 button_frame = tk.Frame(root, bg='#1a1a1a')
