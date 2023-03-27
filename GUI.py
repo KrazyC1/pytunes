@@ -62,9 +62,19 @@ search_button_image = tk.PhotoImage(file="GUI_assets/search.png")
 search_button = HoverButton(search_bar_frame, image=search_button_image, command=search_music, bg='#3b3b3b', activebackground='#4b4b4b')
 search_button.pack(side=tk.LEFT, padx=5, pady=5)
 
+# Switch button
+def switch_function():
+    output_text.config(state=tk.NORMAL)
+    output_text.insert(tk.END, "Switch\n")
+    output_text.config(state=tk.DISABLED)
+
+switch_button_image = tk.PhotoImage(file="GUI_assets/switch.png")
+switch_button = HoverButton(search_bar_frame, image=switch_button_image, command=switch_function, bg='#3b3b3b', activebackground='#4b4b4b')
+switch_button.pack(side=tk.RIGHT, padx=5, pady=5)
+switch_button.pack(side=tk.RIGHT, padx=5, pady=5)
+
 # Center the search bar
 search_bar_frame.pack(anchor='center')
-
 
 # Output field
 output_text = tk.Text(root, font=("Arial", 14), height=12, wrap=tk.WORD, bg='#2b2b2b', fg='#ffffff')
