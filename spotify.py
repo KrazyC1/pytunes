@@ -1,4 +1,5 @@
 import spotipy
+import mp3
 from spotipy.oauth2 import SpotifyClientCredentials
 
 
@@ -23,7 +24,7 @@ class Spotify:
         self.sp = spotipy.Spotify(
             client_credentials_manager=client_credentials_manager)
 
-    def search(self, mp3):
+    def search(self,mp3=mp3):
         """
             This fuctions allows you to search for a specific track from
             Spotify's API using the variables in the given mp3 object.
@@ -31,36 +32,49 @@ class Spotify:
             the track name.
 
         Args:
-            mp3 (mp3): The mp3 object used to search Spotifys API.
+            mp3 (Mp3): The Mp3 object used to search Spotifys API.
 
         Returns:
             results (dict): A dictionary with the results of the search.
         """
-        music = mp3
-        search_result = dict(self.sp.search(
-            music.artist, limit=1, type='artist'))
-        artist = search_result['artists']['items'][0]
-        artist_id = artist['id']
-        list_of_albums = self.sp.artist_albums(artist_id)['items']
-        for i in range(len(list_of_albums)):
-            if (list_of_albums[i]['name'] == music.album):
-                list_of_tracks = self.sp.album_tracks(
-                    album_id=list_of_albums[i]['id'])
-                for j in range(len(list_of_tracks)):
-                    if (list_of_tracks['items'][j]['name'] == music.title):
-                        artist_name = artist['name']
-                        artist_genres = artist['genres']
-                        track_name = list_of_tracks['items'][j]['name']
-                        album_name = list_of_albums[i]['name']
-                        track_id = list_of_tracks['items'][j]['id']
-                        results = {'artist': artist_name, 'genre': artist_genres,
-                                   'title': track_name, 'album': album_name,
-                                   'track id': track_id}
-                        return results
-                        break
+        search_title = mp3.get_title()
+        print("Title to be searched is: " + search_title)
+        search_artist = mp3.get_artist()
+        print("Artist to be searched is: " + search_artist)
+        search_album = mp3.get_album()
+        print("Album to be searched is: " + search_album + "\n")
+        
+        search_result = self.sp.search(q=search_artist, type='artist', limit=1)
+        artist_name = search_result['artists']['items'][0]['name']
+        artist_id = search_result['artists']['items'][0]['id']
+        artist_genre = search_result['artists']['items'][0]['genres']
+        print(artist_name)
+        print(artist_id)
+        
+        artist_albums = self.sp.artist_albums(artist_id=artist_id)['items']
+        for i, album in enumerate(artist_albums):
+            if album['name'] == search_album:
+                song_album = album['name']
+                song_album_id = album['id']
                 break
-
-    def sync_spotify(self, mp3):
+        print(song_album)
+        print(song_album_id)
+        
+        album_songs = self.sp.album_tracks(album_id=song_album_id)['items']
+        for j, song in enumerate(album_songs):
+            if song['name'] == search_title:
+                song_title = song['name']
+                song_id = song['id']
+                break  
+        print(song_title)
+        print(song_id)
+        
+        results = {'title': song_title, 'album': song_album, 'artist': artist_name, 'id': song_id, 'genre': artist_genre}
+        print(results)
+        return results
+        
+        
+    def sync_spotify(self,mp3=mp3):
         """
             This function uses the search() method to take an mp3, search for
             the track in Spotify's API, and replace the title, artist, album,
@@ -69,7 +83,8 @@ class Spotify:
             mp3 (mp3): The mp3 object used to search Spotifys API and sync the
             metadata with.
         """
-        search_results = self.search(mp3)
+        music = mp3
+        search_results = self.search(music)
         mp3.set_title(str(search_results['title']))
         mp3.set_artist(str(search_results['artist']))
         mp3.set_album(str(search_results['album']))
