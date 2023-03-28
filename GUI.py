@@ -126,7 +126,10 @@ def output_sorted_data(list, type, reverse=False):
     output_tree.delete(*output_tree.get_children())  # Clears existing rows
     sorted_list = sorted(list, key=lambda x: getattr(x, type), reverse=reverse)
     for item in sorted_list:
-        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre))
+        # Convert length to minutes:seconds format
+        minutes, seconds = divmod(item.length, 60)
+        duration = f"{int(minutes)}:{int(seconds):02d}"
+        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre, duration))
 
 def sort_song_name():
     """A function that will sort songs by name when the sort button is clicked"""
