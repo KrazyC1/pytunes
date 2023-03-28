@@ -94,24 +94,33 @@ for col in columns:
     output_tree.heading(col, text=col)
 output_tree.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 
-# Sort data menu function
 def sort_data_menu():
     """A function for the sort data menu."""
-    # Create a new window
     global sort_window
     sort_window = tk.Toplevel()
 
-    # Create two buttons
+    # Create a gradient background using rectangles
+    canvas = tk.Canvas(sort_window, width=200, height=200)
+    for i in range(200):
+        color = "#{:02x}00{:02x}".format(i, 255 - i)
+        canvas.create_rectangle(i, 0, i + 1, 200, outline=color, fill=color)
+
+    # Create the buttons
     button1 = tk.Button(sort_window, text="Sort by Song Name", command=sort_song_name)
     button2 = tk.Button(sort_window, text="Sort by Artist Name", command=sort_artist_name)
     button3 = tk.Button(sort_window, text="Sort by Song Album", command=sort_song_album)
-    button4 = tk.Button(sort_window, text="Sort by Genre", command=sort_song_genre)
+    button4 = tk.Button(sort_window, text="Sort by Genre Type", command=sort_song_genre)
+    button5 = tk.Button(sort_window, text="Sort by Song Length", command=sort_song_length)
 
-    # Add the buttons to the window
-    button1.pack()
-    button2.pack()
-    button3.pack()
-    button4.pack()
+    # Add the buttons to the canvas
+    canvas.create_window(100, 20, window=button1)
+    canvas.create_window(100, 60, window=button2)
+    canvas.create_window(100, 100, window=button3)
+    canvas.create_window(100, 140, window=button4)
+    canvas.create_window(100, 180, window=button5)
+
+    # Pack the canvas
+    canvas.pack()
 
 #EXAMPLE DATA
 #music = [("Drake","God's plan","2018", 3.19),("ArtistB","SongB","2018", 3.19),("ArtistA","SongA","2015",2.54),("ArtistC","SongC","2017",3.24),("Future","Mask Off","2014",3.45)]
@@ -130,6 +139,14 @@ def output_sorted_data(list, type, reverse=False):
         minutes, seconds = divmod(item.length, 60)
         duration = f"{int(minutes)}:{int(seconds):02d}"
         output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre, duration))
+
+def sort_song_length():
+    """A function that will sort songs by length when the sort button is clicked."""
+    sorted_music = sorted(music, key=lambda x: x.length)
+    output_sorted_data(sorted_music, 'length')
+    print("Sorting by song length...")
+    # Close the window
+    sort_window.destroy()
 
 def sort_song_name():
     """A function that will sort songs by name when the sort button is clicked"""
