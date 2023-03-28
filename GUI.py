@@ -1,6 +1,5 @@
 import tkinter as tk
 import mp3
-import spotify
 from tkinter import ttk
 from tkinter import filedialog
 
@@ -154,9 +153,7 @@ def upload_file():
 # sync / refresh function
 def sync_website():
     """A function to sync data."""
-    output_text.config(state=tk.NORMAL)
-    output_text.insert(tk.END, "Syncing Data...\n")
-    output_text.config(state=tk.DISABLED)
+    print("Syncing Data...")
 
 # Frame for buttons
 button_frame = tk.Frame(root, bg='#1a1a1a')
