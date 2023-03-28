@@ -94,6 +94,12 @@ for col in columns:
     output_tree.heading(col, text=col)
 output_tree.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 
+output_tree.column("Title", width=100, minwidth=100, anchor=tk.CENTER)
+output_tree.column("Artist", width=100, minwidth=100, anchor=tk.CENTER)
+output_tree.column("Album", width=100, minwidth=100, anchor=tk.CENTER)
+output_tree.column("Genre", width=100, minwidth=100, anchor=tk.CENTER)
+output_tree.column("Length", width=100, minwidth=100, anchor=tk.CENTER)
+
 def sort_data_menu():
     """A function for the sort data menu."""
     global sort_window
@@ -134,6 +140,7 @@ def output_sorted_data(list, type, reverse=False):
     sorting_column = type
     output_tree.delete(*output_tree.get_children())  # Clears existing rows
     sorted_list = sorted(list, key=lambda x: getattr(x, type), reverse=reverse)
+    
     for item in sorted_list:
         # Convert length to minutes:seconds format
         minutes, seconds = divmod(item.length, 60)
