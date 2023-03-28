@@ -48,6 +48,16 @@ def search_music():
 search_bar_frame = tk.Frame(root, bg='#1a1a1a')
 search_bar_frame.pack(pady=10)
 
+# Home button function
+def display_all_songs():
+    output_sorted_data(music, 'title')
+    search_entry.delete(0, tk.END)
+
+# Home button
+home_button_image = tk.PhotoImage(file="GUI_assets/home.png")
+home_button = HoverButton(search_bar_frame, image=home_button_image, command=display_all_songs, bg='#3b3b3b', activebackground='#4b4b4b')
+home_button.pack(side=tk.LEFT, padx=5, pady=5)
+
 # Search bar entry
 style = ttk.Style()
 style.configure("TEntry", fieldbackground='#2b2b2b', background='#2b2b2b', foreground='#000000', bordercolor='#2b2b2b', lightcolor='#2b2b2b', darkcolor='#2b2b2b', borderwidth=20, relief=tk.GROOVE)
