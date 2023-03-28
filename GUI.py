@@ -29,7 +29,7 @@ root.title("Pytunes")
 root.configure(bg='#1a1a1a')
 
 # Window size
-root.geometry("675x550")
+root.minsize(675, 550)
 
 # Load the image for the output label
 output_image = tk.PhotoImage(file="GUI_assets/Pytunes_banner.png")
