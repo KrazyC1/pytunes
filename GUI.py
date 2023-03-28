@@ -3,6 +3,10 @@ import mp3
 from tkinter import ttk
 from tkinter import filedialog
 
+# Global variable to store the order of sorting
+ascending_order = True
+sorting_column = 'title'
+
 # Custom button class for hover effect
 class HoverButton(tk.Button):
     def __init__(self, master, **kw):
@@ -69,9 +73,11 @@ search_button_image = tk.PhotoImage(file="GUI_assets/search.png")
 search_button = HoverButton(search_bar_frame, image=search_button_image, command=search_music, bg='#3b3b3b', activebackground='#4b4b4b')
 search_button.pack(side=tk.LEFT, padx=5, pady=5)
 
-# Switch button
+# Switch button function
 def switch_function():
-    print("Switch Descending / Ascending")
+    global ascending_order
+    ascending_order = not ascending_order
+    output_sorted_data(music, sorting_column, reverse=not ascending_order)
 
 switch_button_image = tk.PhotoImage(file="GUI_assets/switch.png")
 switch_button = HoverButton(search_bar_frame, image=switch_button_image, command=switch_function, bg='#3b3b3b', activebackground='#4b4b4b')
@@ -114,11 +120,13 @@ def sort_data_menu():
 #Empty list for mp3s
 music = []
 
-def output_sorted_data(list, type):
+def output_sorted_data(list, type, reverse=False):
+    global sorting_column
+    sorting_column = type
     output_tree.delete(*output_tree.get_children())  # Clears existing rows
-    for item in list:
-        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre)) # Removed 'item.duration'
-
+    sorted_list = sorted(list, key=lambda x: getattr(x, type), reverse=reverse)
+    for item in sorted_list:
+        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre))
 
 def sort_song_name():
     """A function that will sort songs by name when the sort button is clicked"""
