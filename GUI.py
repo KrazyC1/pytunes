@@ -104,6 +104,7 @@ def sort_data_menu():
     """A function for the sort data menu."""
     global sort_window
     sort_window = tk.Toplevel()
+    sort_window.resizable(False, False)
 
     # Create a gradient background using rectangles
     canvas = tk.Canvas(sort_window, width=200, height=200)
