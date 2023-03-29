@@ -107,8 +107,14 @@ def sort_data_menu():
 
     # Create a gradient background using rectangles
     canvas = tk.Canvas(sort_window, width=200, height=200)
+    red_start, green_start, blue_start = 70, 0, 192
+    red_end, green_end, blue_end = 190, 0, 255
+
     for i in range(200):
-        color = "#{:02x}00{:02x}".format(i, 255 - i)
+        red = red_start + int((red_end - red_start) * i / 200)
+        green = green_start + int((green_end - green_start) * i / 200)
+        blue = blue_start + int((blue_end - blue_start) * i / 200)
+        color = "#{:02x}{:02x}{:02x}".format(red, green, blue)
         canvas.create_rectangle(i, 0, i + 1, 200, outline=color, fill=color)
 
     # Create the buttons
