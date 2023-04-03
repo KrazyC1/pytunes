@@ -2,10 +2,14 @@ import tkinter as tk
 import mp3
 from tkinter import ttk
 from tkinter import filedialog
+import spotify
 
 # Global variable to store the order of sorting
 ascending_order = True
 sorting_column = 'title'
+
+#Refrencing spotify.py
+s = spotify.Spotify()
 
 # Custom button class for hover effect
 class HoverButton(tk.Button):
@@ -205,6 +209,7 @@ def upload_file():
 # sync / refresh function
 def sync_website():
     """A function to sync data."""
+    s.sync_spotify()
     print("Syncing Data...")
 
 # Frame for buttons
