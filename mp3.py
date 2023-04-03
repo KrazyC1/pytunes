@@ -32,7 +32,9 @@ class Mp3:
         """A string that holds the mp3's album title."""
         self.genre = str(self.audio.get('genre', [''])[0])
         """A string that holds the mp3's genre(s)."""
-        self.length = self.mp3_info.info.length
+        self.length = int(self.mp3_info.info.length)
+        """A integer that holds the mp3's length"""
+        
 
     def __str__(self):
         """Returns a string of title, artist, album, and genre"""
