@@ -83,7 +83,7 @@ class Spotify:
         """
         music = mp3
         search_results = self.search(music)
-        mp3.set_title(str(search_results['title']))
-        mp3.set_artist(str(search_results['artist']))
-        mp3.set_album(str(search_results['album']))
-        mp3.set_genre(str(search_results['genre']))
+        music.set_title(str(search_results['title']))
+        music.set_artist(str(search_results['artist']))
+        music.set_album(str(search_results['album']))
+        music.set_genre(str(search_results['genre']))
