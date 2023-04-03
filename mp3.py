@@ -1,6 +1,6 @@
 # Type 'python3 -m pip install mutagen' to install
 from mutagen.easyid3 import EasyID3
-from mutagen.mp3 import MP3
+
 
 class Mp3:
     """
@@ -13,14 +13,11 @@ class Mp3:
             This fuction is the default contructor of Mp3 class. It will
             take in a file path and extract the song title, artist, album, 
             and genre from the .mp3 file it is given.
-
             Args:
                 file_path (string): The file path of the mp3 to be 
                 manipulated.
         """
         self.audio = EasyID3(file_path)
-        """The duration of the mp3 pulled."""
-        self.mp3_info = MP3(file_path)
         """The .mp3 file that is pulled from the file path."""
         self.file_path = str(file_path)
         """A string that holds the mp3's file path."""
@@ -32,9 +29,6 @@ class Mp3:
         """A string that holds the mp3's album title."""
         self.genre = str(self.audio.get('genre', [''])[0])
         """A string that holds the mp3's genre(s)."""
-        self.length = int(self.mp3_info.info.length)
-        """A integer that holds the mp3's length"""
-        
 
     def __str__(self):
         """Returns a string of title, artist, album, and genre"""
@@ -79,7 +73,7 @@ class Mp3:
         """
         self.audio['genre'] = str(new_genre)
         self.audio.save()
-
+        
     def get_title(self):
         """A function that returns the mp3's title."""
         return self.title
