@@ -89,3 +89,19 @@ class Spotify:
         mp3.set_artist(str(search_results['artist']))
         mp3.set_album(str(search_results['album']))
         mp3.set_genre(str(search_results['genre']))
+
+        #try catch statement for data syncing with spotify
+
+  #  try:
+   #     music = mp3
+    #    search_results = self.search(music)
+     #   if search_results is None:
+      #      raise ValueError("Could not find a matching track in Spotify.")
+       # mp3.set_title(str(search_results['title']))
+        #mp3.set_artist(str(search_results['artist']))
+        #mp3.set_album(str(search_results['album']))
+        #mp3.set_genre(str(search_results['genre']))
+    #except KeyError:
+     #   raise ValueError("The metadata returned by Spotify is incomplete.")
+    #except Exception as e:
+     #   raise e
