@@ -1,6 +1,6 @@
 # Type 'python3 -m pip install mutagen' to install
 from mutagen.easyid3 import EasyID3
-
+from mutagen.mp3 import MP3
 
 class Mp3:
     """
@@ -19,6 +19,8 @@ class Mp3:
         """
         self.audio = EasyID3(file_path)
         """The .mp3 file that is pulled from the file path."""
+        self.mp3_info = MP3(file_path)
+        """The .mp3 file that is pulled from the file path."""
         self.file_path = str(file_path)
         """A string that holds the mp3's file path."""
         self.title = str(self.audio.get('title', [''])[0])
@@ -29,7 +31,7 @@ class Mp3:
         """A string that holds the mp3's album title."""
         self.genre = str(self.audio.get('genre', [''])[0])
         """A string that holds the mp3's genre(s)."""
-        self.length = self.audio.get('length', [''])[0]
+        self.length = int(self.mp3_info.info.length)
         """A integer that holds the mp3's song length"""
 
     def __str__(self):
