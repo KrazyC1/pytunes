@@ -47,6 +47,8 @@ class Spotify:
         artist_name = search_result['artists']['items'][0]['name']
         artist_id = search_result['artists']['items'][0]['id']
         artist_genre = search_result['artists']['items'][0]['genres']
+        song_album = None
+        song_album_id = None
         print(artist_name)
         print(artist_id)
         
@@ -56,6 +58,25 @@ class Spotify:
                 song_album = album['name']
                 song_album_id = album['id']
                 break
+
+        if song_album is None or song_album_id is None:
+            print(f"Album '{search_album}' not found for artist '{search_artist}'. Searching for song without album...")
+            fallback_search = self.sp.search(q=f'artist:{search_artist} track:{search_title}', type='track', limit=1)
+            if not fallback_search['tracks']['items']:
+                raise ValueError(f"Song '{search_title}' not found for artist '{search_artist}'")
+            track = fallback_search['tracks']['items'][0]
+            song_title = track['name']
+            song_id = track['id']
+            song_album = track['album']['name']
+            song_album_id = track['album']['id']
+        else:
+            album_songs = self.sp.album_tracks(album_id=song_album_id)['items']
+            for j, song in enumerate(album_songs):
+                if song['name'] == search_title:
+                    song_title = song['name']
+                    song_id = song['id']
+                    break  
+
         print(song_album)
         print(song_album_id)
         
