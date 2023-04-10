@@ -206,10 +206,10 @@ def upload_file():
         music.append(mp3.Mp3(file_path))
         output_sorted_data(music, 'title')
 
-# sync / refresh function
 def sync_website():
     """A function to sync data."""
-    s.sync_spotify()
+    for song in music:
+        s.sync_spotify(song)
     print("Syncing Data...")
 
 # Frame for buttons
