@@ -35,17 +35,18 @@ class Spotify:
         Returns:
             results (dict): A dictionary with the results of the search.
         """
-        search_title = mp3.get_title()
+        search_title = str(mp3.Mp3.get_title())
         print("Title to be searched is: " + search_title)
-        search_artist = mp3.get_artist()
+        search_artist = str(mp3.Mp3.get_artist())
         print("Artist to be searched is: " + search_artist)
-        search_album = mp3.get_album()
+        search_album = str(mp3.Mp3.get_album())
         print("Album to be searched is: " + search_album + "\n")
         
         search_result = self.sp.search(q=search_artist, type='artist', limit=1)
-        artist_name = search_result['artists']['items'][0]['name']
-        artist_id = search_result['artists']['items'][0]['id']
-        artist_genre = search_result['artists']['items'][0]['genres']
+        print(search_result)
+        #artist_name = search_result['artists']['items'][0]['name']
+        #artist_id = search_result['artists']['items'][0]['id']
+        #artist_genre = search_result['artists']['items'][0]['genres']
         print(artist_name)
         print(artist_id)
         
