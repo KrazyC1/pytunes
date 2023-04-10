@@ -44,9 +44,9 @@ class Spotify:
         
         search_result = self.sp.search(q=search_artist, type='artist', limit=1)
         print(search_result)
-        #artist_name = search_result['artists']['items'][0]['name']
-        #artist_id = search_result['artists']['items'][0]['id']
-        #artist_genre = search_result['artists']['items'][0]['genres']
+        artist_name = search_result['artists']['items'][0]['name']
+        artist_id = search_result['artists']['items'][0]['id']
+        artist_genre = search_result['artists']['items'][0]['genres']
         print(artist_name)
         print(artist_id)
         
