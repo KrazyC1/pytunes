@@ -7,6 +7,7 @@ import spotify
 # Global variable to store the order of sorting
 ascending_order = True
 sorting_column = 'title'
+file_paths = []
 
 #Refrencing spotify.py
 s = spotify.Spotify()
@@ -146,6 +147,12 @@ def sort_data_menu():
 #Empty list for mp3s
 music = []
 
+# Function to append file paths to the list
+def append_file_path(file_path):
+    """A function to append file path to the list."""
+    if file_path not in file_paths:
+        file_paths.append(file_path)
+
 def output_sorted_data(list, type, reverse=False):
     global sorting_column
     sorting_column = type
@@ -201,17 +208,21 @@ def sort_song_genre():
 # Upload file function
 def upload_file():
     """A function that allows the user to upload .mp3 files into the program."""
-    file_paths = filedialog.askopenfilenames()
-    for file_path in file_paths:
-        music.append(mp3.Mp3(file_path))
-        output_sorted_data(music, 'title')
+    global music, file_paths
+    new_file_paths = filedialog.askopenfilenames()
+    for file_path in new_file_paths:
+        append_file_path(file_path)
+    music = [mp3.Mp3(file_path) for file_path in file_paths]
+    output_sorted_data(music, 'title')
 
 # Function to sync songs with spotify
 def sync_website():
     """A function to sync data."""
+    global music
     for song in music:
         s.sync_spotify(song)
-    print("Syncing Data...")
+    music = [mp3.Mp3(file_path) for file_path in file_paths]  # Reupload all songs from the file paths
+    output_sorted_data(music, 'title')
 
 # Frame for buttons
 button_frame = tk.Frame(root, bg='#1a1a1a')
