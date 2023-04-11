@@ -229,17 +229,25 @@ def sync_website():
     music = [mp3.Mp3(file_path) for file_path in file_paths]  # Reupload all songs from the file paths
     output_sorted_data(music, 'title')
 
-# Play music function
 def play_music():
     """A function to play the selected music."""
     try:
         selection = output_tree.selection()[0]
-        item = music[int(selection[1:])-1]
+        selected_values = output_tree.item(selection, "values")
+        selected_title = selected_values[0]
+
+        # Find the correct song based on the title
+        for song in music:
+            if song.title == selected_title:
+                item = song
+                break
+
         mixer.music.load(item.file_path)
         mixer.music.play()
         root.after(10, check_music_status)
     except:
         pass
+
 
 # Pause music function
 def pause_music():
