@@ -39,7 +39,7 @@ root.title("Pytunes")
 root.configure(bg='#1a1a1a')
 
 # Window size
-root.minsize(675, 550)
+root.minsize(675, 600)
 
 # Load the image for the output label
 output_image = tk.PhotoImage(file="GUI_assets/Pytunes_banner.png")
@@ -258,6 +258,20 @@ def check_music_status():
 button_frame = tk.Frame(root, bg='#1a1a1a')
 button_frame.pack(pady=10)
 
+# Frame for play/pause buttons
+play_pause_frame = tk.Frame(button_frame, bg='#1a1a1a')
+play_pause_frame.pack(side=tk.TOP, pady=10)
+
+# play button
+play_button_image = tk.PhotoImage(file="GUI_assets/play.png")
+play_button = HoverButton(play_pause_frame, image=play_button_image, command=play_music, bg='#3b3b3b', activebackground='#4b4b4b')
+play_button.pack(side=tk.LEFT, padx=5)
+
+# pause button
+pause_button_image = tk.PhotoImage(file="GUI_assets/pause.png")
+pause_button = HoverButton(play_pause_frame, image=pause_button_image, command=pause_music, bg='#3b3b3b', activebackground='#4b4b4b')
+pause_button.pack(side=tk.LEFT, padx=5)
+
 # upload file button
 upload_button_image = tk.PhotoImage(file="GUI_assets/upload.png")
 upload_button = HoverButton(button_frame, image=upload_button_image, command=upload_file, bg='#3b3b3b', activebackground='#4b4b4b')
@@ -272,17 +286,6 @@ sort_button.pack(side=tk.LEFT, padx=5)
 ping_button_image = tk.PhotoImage(file="GUI_assets/sync.png")
 ping_button = HoverButton(button_frame, image=ping_button_image, command=sync_website, bg='#3b3b3b', activebackground='#4b4b4b')
 ping_button.pack(side=tk.LEFT, padx=5)
-
-# play button
-play_button_image = tk.PhotoImage(file="GUI_assets/play.png")
-play_button = HoverButton(button_frame, image=play_button_image, command=play_music, bg='#3b3b3b', activebackground='#4b4b4b')
-play_button.pack(side=tk.LEFT, padx=5)
-
-# pause button
-pause_button_image = tk.PhotoImage(file="GUI_assets/pause.png")
-pause_button = HoverButton(button_frame, image=pause_button_image, command=pause_music, bg='#3b3b3b', activebackground='#4b4b4b')
-pause_button.pack(side=tk.LEFT, padx=5)
-
 
 # start
 root.mainloop()
