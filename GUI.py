@@ -3,11 +3,16 @@ import mp3
 from tkinter import ttk
 from tkinter import filedialog
 import spotify
+import pygame
+from pygame import mixer
 
 # Global variable to store the order of sorting
 ascending_order = True
 sorting_column = 'title'
 file_paths = []
+
+#initilizating mixer
+mixer.init()
 
 #Refrencing spotify.py
 s = spotify.Spotify()
@@ -224,6 +229,31 @@ def sync_website():
     music = [mp3.Mp3(file_path) for file_path in file_paths]  # Reupload all songs from the file paths
     output_sorted_data(music, 'title')
 
+# Play music function
+def play_music():
+    """A function to play the selected music."""
+    try:
+        selection = output_tree.selection()[0]
+        item = music[int(selection[1:])-1]
+        mixer.music.load(item.file_path)
+        mixer.music.play()
+        root.after(10, check_music_status)
+    except:
+        pass
+
+# Pause music function
+def pause_music():
+    """A function to pause the currently playing music."""
+    mixer.music.pause()
+
+# Function to check music status
+def check_music_status():
+    """A function to check if the music is still playing."""
+    if not mixer.music.get_busy():
+        output_tree.selection_remove(output_tree.selection())
+    else:
+        root.after(10, check_music_status)
+
 # Frame for buttons
 button_frame = tk.Frame(root, bg='#1a1a1a')
 button_frame.pack(pady=10)
@@ -242,6 +272,17 @@ sort_button.pack(side=tk.LEFT, padx=5)
 ping_button_image = tk.PhotoImage(file="GUI_assets/sync.png")
 ping_button = HoverButton(button_frame, image=ping_button_image, command=sync_website, bg='#3b3b3b', activebackground='#4b4b4b')
 ping_button.pack(side=tk.LEFT, padx=5)
+
+# play button
+play_button_image = tk.PhotoImage(file="GUI_assets/play.png")
+play_button = HoverButton(button_frame, image=play_button_image, command=play_music, bg='#3b3b3b', activebackground='#4b4b4b')
+play_button.pack(side=tk.LEFT, padx=5)
+
+# pause button
+pause_button_image = tk.PhotoImage(file="GUI_assets/pause.png")
+pause_button = HoverButton(button_frame, image=pause_button_image, command=pause_music, bg='#3b3b3b', activebackground='#4b4b4b')
+pause_button.pack(side=tk.LEFT, padx=5)
+
 
 # start
 root.mainloop()
