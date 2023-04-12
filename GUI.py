@@ -255,6 +255,28 @@ def pause_music():
     """A function to pause the currently playing music."""
     mixer.music.pause()
 
+# Function to play the previous song in the list
+def previous_song():
+    try:
+        selection = output_tree.selection()[0]
+        prev_item = output_tree.prev(selection)
+        if prev_item:
+            output_tree.selection_set(prev_item)
+            play_music()
+    except:
+        pass
+
+# Function to play the next song in the list
+def next_song():
+    try:
+        selection = output_tree.selection()[0]
+        next_item = output_tree.next(selection)
+        if next_item:
+            output_tree.selection_set(next_item)
+            play_music()
+    except:
+        pass
+
 # Function to check music status
 def check_music_status():
     """A function to check if the music is still playing."""
@@ -271,6 +293,11 @@ button_frame.pack(pady=10)
 play_pause_frame = tk.Frame(button_frame, bg='#1a1a1a')
 play_pause_frame.pack(side=tk.TOP, pady=10)
 
+# previous button
+previous_button_image = tk.PhotoImage(file="GUI_assets/previous.png")  # Replace with your previous button image
+previous_button = HoverButton(play_pause_frame, image=previous_button_image, command=previous_song, bg='#3b3b3b', activebackground='#4b4b4b')
+previous_button.pack(side=tk.LEFT, padx=5)
+
 # play button
 play_button_image = tk.PhotoImage(file="GUI_assets/play.png")
 play_button = HoverButton(play_pause_frame, image=play_button_image, command=play_music, bg='#3b3b3b', activebackground='#4b4b4b')
@@ -280,6 +307,11 @@ play_button.pack(side=tk.LEFT, padx=5)
 pause_button_image = tk.PhotoImage(file="GUI_assets/pause.png")
 pause_button = HoverButton(play_pause_frame, image=pause_button_image, command=pause_music, bg='#3b3b3b', activebackground='#4b4b4b')
 pause_button.pack(side=tk.LEFT, padx=5)
+
+# next button
+next_button_image = tk.PhotoImage(file="GUI_assets/next.png")  # Replace with your next button image
+next_button = HoverButton(play_pause_frame, image=next_button_image, command=next_song, bg='#3b3b3b', activebackground='#4b4b4b')
+next_button.pack(side=tk.LEFT, padx=5)
 
 # upload file button
 upload_button_image = tk.PhotoImage(file="GUI_assets/upload.png")
