@@ -3,10 +3,17 @@ import mp3
 from tkinter import ttk
 from tkinter import filedialog
 import spotify
+from pygame import mixer
+
+# If pygame is not functioning an uninstall and reinstall may be required
 
 # Global variable to store the order of sorting
 ascending_order = True
 sorting_column = 'title'
+file_paths = []
+
+#initilizating mixer
+mixer.init()
 
 #Refrencing spotify.py
 s = spotify.Spotify()
@@ -33,7 +40,7 @@ root.title("Pytunes")
 root.configure(bg='#1a1a1a')
 
 # Window size
-root.minsize(675, 550)
+root.minsize(675, 600)
 
 # Load the image for the output label
 output_image = tk.PhotoImage(file="GUI_assets/Pytunes_banner.png")
@@ -101,8 +108,8 @@ output_tree.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 output_tree.column("Title", width=100, minwidth=100, anchor=tk.CENTER)
 output_tree.column("Artist", width=100, minwidth=100, anchor=tk.CENTER)
 output_tree.column("Album", width=100, minwidth=100, anchor=tk.CENTER)
-output_tree.column("Genre", width=100, minwidth=100, anchor=tk.CENTER)
-output_tree.column("Length", width=100, minwidth=100, anchor=tk.CENTER)
+output_tree.column("Genre", width=150, minwidth=150, anchor=tk.CENTER)
+output_tree.column("Length", width=25, minwidth=25, anchor=tk.CENTER)
 
 def sort_data_menu():
     """A function for the sort data menu."""
@@ -145,6 +152,12 @@ def sort_data_menu():
 
 #Empty list for mp3s
 music = []
+
+# Function to append file paths to the list
+def append_file_path(file_path):
+    """A function to append file path to the list."""
+    if file_path not in file_paths:
+        file_paths.append(file_path)
 
 def output_sorted_data(list, type, reverse=False):
     global sorting_column
@@ -201,20 +214,122 @@ def sort_song_genre():
 # Upload file function
 def upload_file():
     """A function that allows the user to upload .mp3 files into the program."""
-    file_paths = filedialog.askopenfilenames()
-    for file_path in file_paths:
-        music.append(mp3.Mp3(file_path))
-        output_sorted_data(music, 'title')
+    global music, file_paths
+    new_file_paths = filedialog.askopenfilenames()
+    for file_path in new_file_paths:
+        append_file_path(file_path)
+    music = [mp3.Mp3(file_path) for file_path in file_paths]
+    output_sorted_data(music, 'title')
 
+# Function to sync songs with spotify
 def sync_website():
     """A function to sync data."""
+    global music
     for song in music:
         s.sync_spotify(song)
-    print("Syncing Data...")
+    music = [mp3.Mp3(file_path) for file_path in file_paths]  # Reupload all songs from the file paths
+    output_sorted_data(music, 'title')
+
+# Function to play music
+def play_music():
+    """A function to play the selected music."""
+    try:
+        selection = output_tree.selection()[0]
+        selected_values = output_tree.item(selection, "values")
+        selected_title = selected_values[0]
+
+        # Find the correct song based on the title
+        for song in music:
+            if song.title == selected_title:
+                item = song
+                break
+
+        mixer.music.load(item.file_path)
+        mixer.music.play()
+        root.after(10, check_music_status)
+    except:
+        pass
+
+# Pause music function
+def pause_music():
+    """A function to pause the currently playing music."""
+    mixer.music.pause()
+
+# Function to play the previous song in the list
+def previous_song():
+    try:
+        selection = output_tree.selection()[0]
+        prev_item = output_tree.prev(selection)
+        if prev_item:
+            output_tree.selection_set(prev_item)
+            play_music()
+    except:
+        pass
+
+# Function to play the next song in the list
+def next_song():
+    try:
+        selection = output_tree.selection()[0]
+        next_item = output_tree.next(selection)
+        if next_item:
+            output_tree.selection_set(next_item)
+            play_music()
+    except:
+        pass
+
+# Function to check music status
+def check_music_status():
+    """A function to check if the music is still playing."""
+    if not mixer.music.get_busy():
+        output_tree.selection_remove(output_tree.selection())
+    else:
+        root.after(10, check_music_status)
+
+# volume slider function
+def set_volume(val):
+    volume = int(val) / 100
+    mixer.music.set_volume(volume)
 
 # Frame for buttons
 button_frame = tk.Frame(root, bg='#1a1a1a')
 button_frame.pack(pady=10)
+
+# Frame for play/pause buttons
+play_pause_frame = tk.Frame(button_frame, bg='#1a1a1a')
+play_pause_frame.pack(side=tk.TOP, pady=10)
+
+# Volume control frame
+volume_control_frame = tk.Frame(play_pause_frame, bg='#404040')
+volume_control_frame.pack(side=tk.LEFT, padx=5)
+
+# Volume label
+volume_label = tk.Label(volume_control_frame, text="Volume", bg='#404040', fg='white')
+volume_label.pack(side=tk.TOP)
+
+# Volume slider
+volume_slider = tk.Scale(volume_control_frame, from_=0, to=100, orient=tk.HORIZONTAL, command=set_volume, sliderlength=10, length=100, background='#be00ff', troughcolor='#88f1fc', activebackground='#000000')
+volume_slider.set(75)  # Sets the initial volume to 75%
+volume_slider.pack(side=tk.BOTTOM)
+
+# previous button
+previous_button_image = tk.PhotoImage(file="GUI_assets/previous.png")  # Replace with your previous button image
+previous_button = HoverButton(play_pause_frame, image=previous_button_image, command=previous_song, bg='#3b3b3b', activebackground='#4b4b4b')
+previous_button.pack(side=tk.LEFT, padx=5)
+
+# play button
+play_button_image = tk.PhotoImage(file="GUI_assets/play.png")
+play_button = HoverButton(play_pause_frame, image=play_button_image, command=play_music, bg='#3b3b3b', activebackground='#4b4b4b')
+play_button.pack(side=tk.LEFT, padx=5)
+
+# pause button
+pause_button_image = tk.PhotoImage(file="GUI_assets/pause.png")
+pause_button = HoverButton(play_pause_frame, image=pause_button_image, command=pause_music, bg='#3b3b3b', activebackground='#4b4b4b')
+pause_button.pack(side=tk.LEFT, padx=5)
+
+# next button
+next_button_image = tk.PhotoImage(file="GUI_assets/next.png")  # Replace with your next button image
+next_button = HoverButton(play_pause_frame, image=next_button_image, command=next_song, bg='#3b3b3b', activebackground='#4b4b4b')
+next_button.pack(side=tk.LEFT, padx=5)
 
 # upload file button
 upload_button_image = tk.PhotoImage(file="GUI_assets/upload.png")
