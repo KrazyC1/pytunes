@@ -1,6 +1,7 @@
 import spotipy
-import mp3
 from spotipy.oauth2 import SpotifyClientCredentials
+import mp3
+
 
 
 class Spotify:
