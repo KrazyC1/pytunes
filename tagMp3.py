@@ -44,16 +44,26 @@ for track in sp.playlist_tracks(playlist_URI)["items"]:
     artist_genres = artist_info["genres"]
 
     # Album
+    album_id = track["track"]["album"]["uri"]
+    album_info = sp.album(album_id)
+    album_date = album_info["release_date"]
+    
     album = track["track"]["album"]["name"]
 
     # Popularity of the track
     track_pop = track["track"]["popularity"]
 
     # Append all details to a list
-    temp = [track_name, artist_name, artist_pop, artist_genres, album, track_pop]
+    temp = [track_name, artist_name, artist_pop, artist_genres, album, album_date, track_pop]
     all_tracks.append(temp)
 
 for track in all_tracks:
     print(track)
 print("Now printing first entry in list")
 print(all_tracks[0])
+
+#sort albums by date
+all_tracks.sort(key=lambda x: x[5])
+# Print sorted ArrayList
+for all_tracks_sorted_date in all_tracks:
+    print(all_tracks_sorted_date)
