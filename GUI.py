@@ -298,10 +298,18 @@ button_frame.pack(pady=10)
 play_pause_frame = tk.Frame(button_frame, bg='#1a1a1a')
 play_pause_frame.pack(side=tk.TOP, pady=10)
 
+# Volume control frame
+volume_control_frame = tk.Frame(play_pause_frame, bg='#404040')
+volume_control_frame.pack(side=tk.LEFT, padx=5)
+
+# Volume label
+volume_label = tk.Label(volume_control_frame, text="Volume", bg='#404040', fg='white')
+volume_label.pack(side=tk.TOP)
+
 # Volume slider
-volume_slider = tk.Scale(play_pause_frame, from_=0, to=100, orient=tk.HORIZONTAL, command=set_volume, sliderlength=10, length=100, background='#be00ff', troughcolor='#88f1fc', activebackground='#000000')
+volume_slider = tk.Scale(volume_control_frame, from_=0, to=100, orient=tk.HORIZONTAL, command=set_volume, sliderlength=10, length=100, background='#be00ff', troughcolor='#88f1fc', activebackground='#000000')
 volume_slider.set(75)  # Sets the initial volume to 75%
-volume_slider.pack(side=tk.LEFT, padx=5)
+volume_slider.pack(side=tk.BOTTOM)
 
 # previous button
 previous_button_image = tk.PhotoImage(file="GUI_assets/previous.png")  # Replace with your previous button image
