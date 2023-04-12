@@ -2,6 +2,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 import mp3
 class Spotify:
+    
     def __init__(self):
         #Client ID
         self.ci = "cb6906d5bc1c4f80bbeb8006ec63bf42"
