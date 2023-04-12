@@ -3,8 +3,9 @@ import mp3
 from tkinter import ttk
 from tkinter import filedialog
 import spotify
-import pygame
 from pygame import mixer
+
+# If pygame is not functioning an uninstall and reinstall may be required
 
 # Global variable to store the order of sorting
 ascending_order = True
@@ -229,6 +230,7 @@ def sync_website():
     music = [mp3.Mp3(file_path) for file_path in file_paths]  # Reupload all songs from the file paths
     output_sorted_data(music, 'title')
 
+# Function to play music
 def play_music():
     """A function to play the selected music."""
     try:
@@ -247,7 +249,6 @@ def play_music():
         root.after(10, check_music_status)
     except:
         pass
-
 
 # Pause music function
 def pause_music():
