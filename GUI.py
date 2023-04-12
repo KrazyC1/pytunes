@@ -108,8 +108,8 @@ output_tree.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 output_tree.column("Title", width=100, minwidth=100, anchor=tk.CENTER)
 output_tree.column("Artist", width=100, minwidth=100, anchor=tk.CENTER)
 output_tree.column("Album", width=100, minwidth=100, anchor=tk.CENTER)
-output_tree.column("Genre", width=100, minwidth=100, anchor=tk.CENTER)
-output_tree.column("Length", width=100, minwidth=100, anchor=tk.CENTER)
+output_tree.column("Genre", width=150, minwidth=150, anchor=tk.CENTER)
+output_tree.column("Length", width=25, minwidth=25, anchor=tk.CENTER)
 
 def sort_data_menu():
     """A function for the sort data menu."""
