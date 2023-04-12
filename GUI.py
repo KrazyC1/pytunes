@@ -285,6 +285,11 @@ def check_music_status():
     else:
         root.after(10, check_music_status)
 
+# volume slider function
+def set_volume(val):
+    volume = int(val) / 100
+    mixer.music.set_volume(volume)
+
 # Frame for buttons
 button_frame = tk.Frame(root, bg='#1a1a1a')
 button_frame.pack(pady=10)
@@ -292,6 +297,11 @@ button_frame.pack(pady=10)
 # Frame for play/pause buttons
 play_pause_frame = tk.Frame(button_frame, bg='#1a1a1a')
 play_pause_frame.pack(side=tk.TOP, pady=10)
+
+# Volume slider
+volume_slider = tk.Scale(play_pause_frame, from_=0, to=100, orient=tk.HORIZONTAL, command=set_volume, sliderlength=10, length=100, background='#be00ff', troughcolor='#88f1fc', activebackground='#000000')
+volume_slider.set(75)  # Sets the initial volume to 75%
+volume_slider.pack(side=tk.LEFT, padx=5)
 
 # previous button
 previous_button_image = tk.PhotoImage(file="GUI_assets/previous.png")  # Replace with your previous button image
