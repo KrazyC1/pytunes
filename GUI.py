@@ -99,7 +99,7 @@ switch_button.pack(side=tk.RIGHT, padx=5, pady=5)
 search_bar_frame.pack(anchor='center')
 
 # Output field - Replacing the Text widget with a Treeview widget
-columns = ("Title", "Artist", "Album", "Genre", "Length")
+columns = ("Title", "Artist", "Album", "Genre", "Length", "Date")
 output_tree = ttk.Treeview(root, columns=columns, show="headings")
 for col in columns:
     output_tree.heading(col, text=col)
@@ -110,6 +110,7 @@ output_tree.column("Artist", width=100, minwidth=100, anchor=tk.CENTER)
 output_tree.column("Album", width=100, minwidth=100, anchor=tk.CENTER)
 output_tree.column("Genre", width=150, minwidth=150, anchor=tk.CENTER)
 output_tree.column("Length", width=25, minwidth=25, anchor=tk.CENTER)
+output_tree.column("Date", width=25, minwidth=25, anchor=tk.CENTER)
 
 def sort_data_menu():
     """A function for the sort data menu."""
@@ -118,16 +119,16 @@ def sort_data_menu():
     sort_window.resizable(False, False)
 
     # Create a gradient background using rectangles
-    canvas = tk.Canvas(sort_window, width=200, height=200)
+    canvas = tk.Canvas(sort_window, width=200, height=240)
     red_start, green_start, blue_start = 70, 0, 192
-    red_end, green_end, blue_end = 190, 0, 255
+    red_end, green_end, blue_end = 230, 0, 255
 
     for i in range(200):
         red = red_start + int((red_end - red_start) * i / 200)
         green = green_start + int((green_end - green_start) * i / 200)
         blue = blue_start + int((blue_end - blue_start) * i / 200)
         color = "#{:02x}{:02x}{:02x}".format(red, green, blue)
-        canvas.create_rectangle(i, 0, i + 1, 200, outline=color, fill=color)
+        canvas.create_rectangle(i, 0, i + 1, 240, outline=color, fill=color)
 
     # Create the buttons
     button1 = tk.Button(sort_window, text="Sort by Song Name", command=sort_song_name)
@@ -135,6 +136,7 @@ def sort_data_menu():
     button3 = tk.Button(sort_window, text="Sort by Song Album", command=sort_song_album)
     button4 = tk.Button(sort_window, text="Sort by Genre Type", command=sort_song_genre)
     button5 = tk.Button(sort_window, text="Sort by Song Length", command=sort_song_length)
+    button6 = tk.Button(sort_window, text="Sort by Date", command=sort_song_date)
 
     # Add the buttons to the canvas
     canvas.create_window(100, 20, window=button1)
@@ -142,6 +144,7 @@ def sort_data_menu():
     canvas.create_window(100, 100, window=button3)
     canvas.create_window(100, 140, window=button4)
     canvas.create_window(100, 180, window=button5)
+    canvas.create_window(100, 220, window=button6)
 
     # Pack the canvas
     canvas.pack()
@@ -169,13 +172,21 @@ def output_sorted_data(list, type, reverse=False):
         # Convert length to minutes:seconds format
         minutes, seconds = divmod(item.length, 60)
         duration = f"{int(minutes)}:{int(seconds):02d}"
-        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre, duration))
+        output_tree.insert("", tk.END, values=(item.title, item.artist, item.album, item.genre, duration, item.date))
 
 def sort_song_length():
     """A function that will sort songs by length when the sort button is clicked."""
     sorted_music = sorted(music, key=lambda x: x.length)
     output_sorted_data(sorted_music, 'length')
     print("Sorting by song length...")
+    # Close the window
+    sort_window.destroy()
+    
+def sort_song_date():
+    """A function that will sort songs by publication date when the sort button is clicked."""
+    sorted_music = sorted(music, key=lambda x: x.date)
+    output_sorted_data(sorted_music, 'date')
+    print("Sorting by song date...")
     # Close the window
     sort_window.destroy()
 

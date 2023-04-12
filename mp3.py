@@ -7,7 +7,6 @@ class Mp3:
         This is a class that creates an mp3 object from an .mp3 file so that 
         Pytunes can manipulate the mp3 files ID3 tags.
     """
-
     def __init__(self, file_path):
         """
             This fuction is the default contructor of Mp3 class. It will
@@ -33,11 +32,12 @@ class Mp3:
         """A string that holds the mp3's genre(s)."""
         self.length = int(self.mp3_info.info.length)
         """A integer that holds the mp3's song length"""
+        self.date = str(self.audio.get('date', [''])[0])
 
     def __str__(self):
         """Returns a string of title, artist, album, and genre"""
         return f"Title: {self.title}\nArtist: {self.artist}\
-            \nAlbum: {self.album}\nGenre: {self.genre}\nLength: {self.length}"
+            \nAlbum: {self.album}\nGenre: {self.genre}\nLength: {self.length}\nDate: {self.date}"
 
     def set_title(self, new_title):
         """
@@ -77,6 +77,15 @@ class Mp3:
         """
         self.audio['genre'] = str(new_genre)
         self.audio.save()
+    def set_date(self, new_date):
+        """
+            This function is the setter for the the .mp3's date tag.
+        Args:
+            new_date (str): This is the new release to 
+            give to the .mp3 file.
+        """
+        self.audio['date'] = str(new_date)
+        self.audio.save()
         
     def get_title(self):
         """A function that returns the mp3's title."""
@@ -93,3 +102,7 @@ class Mp3:
     def get_genre(self):
         """A function that returns the mp3's genre."""
         return self.genre
+    
+    def get_date(self):
+        """A function that returns the mp3's release date."""
+        return self.date

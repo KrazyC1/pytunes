@@ -49,14 +49,14 @@ class Spotify:
         artist_genre = search_result['artists']['items'][0]['genres']
         song_album = None
         song_album_id = None
-        print(artist_name)
-        print(artist_id)
+        song_album_date = None
         
         artist_albums = self.sp.artist_albums(artist_id=artist_id)['items']
         for i, album in enumerate(artist_albums):
             if album['name'] == search_album:
                 song_album = album['name']
                 song_album_id = album['id']
+                song_album_date = album['release_date']
                 break
 
         if song_album is None or song_album_id is None:
@@ -69,6 +69,7 @@ class Spotify:
             song_id = track['id']
             song_album = track['album']['name']
             song_album_id = track['album']['id']
+            song_album_date = track['album']['release_date']
         else:
             album_songs = self.sp.album_tracks(album_id=song_album_id)['items']
             for j, song in enumerate(album_songs):
@@ -76,9 +77,6 @@ class Spotify:
                     song_title = song['name']
                     song_id = song['id']
                     break  
-
-        print(song_album)
-        print(song_album_id)
         
         album_songs = self.sp.album_tracks(album_id=song_album_id)['items']
         for j, song in enumerate(album_songs):
@@ -86,10 +84,8 @@ class Spotify:
                 song_title = song['name']
                 song_id = song['id']
                 break  
-        print(song_title)
-        print(song_id)
         
-        results = {'title': song_title, 'album': song_album, 'artist': artist_name, 'id': song_id, 'genre': artist_genre}
+        results = {'title': song_title, 'album': song_album, 'artist': artist_name, 'id': song_id, 'genre': artist_genre, 'date': song_album_date}
         print(results)
         return results
         
@@ -109,3 +105,4 @@ class Spotify:
         music.set_artist(str(search_results['artist']))
         music.set_album(str(search_results['album']))
         music.set_genre(str(search_results['genre']))
+        music.set_date(str(search_results['date']))
