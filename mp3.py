@@ -1,5 +1,5 @@
+"""This is a module that creates an mp3 object."""
 # pylint: disable=too-many-instance-attributes
-# Type 'python3 -m pip install mutagen' to install
 
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
@@ -88,7 +88,7 @@ class Mp3:
         """
             This function is the setter for the the .mp3's date tag.
         Args:
-            new_date (str): This is the new release to 
+            new_date (str): This is the new release to
             give to the .mp3 file.
         """
         self.audio['date'] = str(new_date)

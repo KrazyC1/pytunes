@@ -1,4 +1,0 @@
-spotify.py:18:76: W291 trailing whitespace
-spotify.py:21:54: W291 trailing whitespace
-spotify.py:22:13: E116 unexpected indentation (comment)
-spotify.py:56:80: E501 line too long (81 > 79 characters)
