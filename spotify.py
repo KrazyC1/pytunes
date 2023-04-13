@@ -1,4 +1,5 @@
-"""This is a module to creates an object for the Spotify API."""
+"""This is a module to creates an object for the Spotify API to interact \
+    with."""
 # pylint: disable=too-many-locals
 # pylint: disable=unused-variable
 # pylint: disable=invalid-name
