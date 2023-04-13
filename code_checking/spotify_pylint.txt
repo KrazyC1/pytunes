@@ -1,6 +1,4 @@
-************* Module spotify
-spotify.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 
-------------------------------------------------------------------
-Your code has been rated at 9.84/10 (previous run: 6.47/10, +3.37)
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
