@@ -1,4 +1,0 @@
-import os
-
-from mutagen.easyid3 import EasyID3
-    type 'python3 -m pip install mutagen' to install
