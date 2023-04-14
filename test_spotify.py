@@ -20,7 +20,7 @@ class TestSpotify(unittest.TestCase):
     'album': 'Chaos And The Calm',
     'artist': 'James Bay',
     'id': '3ZQsCvbpp2HVXt9Mp46f8n',
-    'genre': ['neo mellow', 'pop', 'pop rock'],
+    'genre': ['neo mellow', 'pop', 'uk pop'],
     'date': '2015-03-25'
 }
         actual_output = self.spotify.search(test_music)

@@ -79,8 +79,7 @@ class Spotify:
             song_album_id = track['album']['id']
             song_album_date = track['album']['release_date']
         else:
-            album_songs = self.sp.album_tracks(album_id=song_album_id)['items\
-                ']
+            album_songs = self.sp.album_tracks(album_id=song_album_id)['items']
             for j, song in enumerate(album_songs):
                 if song['name'] == search_title:
                     song_title = song['name']
