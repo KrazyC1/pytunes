@@ -1,0 +1,53 @@
+test_mp3.py
+
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+
+
+test_spotify.py
+
+PS C:\Users\matte\OneDrive\Documents\IntroToSoftwareEgineering\spotify-tagger> & C:/Users/matte/AppData/Local/Programs/Python/Python311/python.exe c:/Users/matte/OneDrive/Documents/IntroToSoftwareEgineering/spotify-tagger/test_spotify.py
+Title to be searched is: Let It Go
+Artist to be searched is: James Bay
+Album to be searched is: Chaos And The Calm
+
+{'artists': {'href': 'https://api.spotify.com/v1/search?query=James+Bay&type=artist&offset=0&limit=1', 'items': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/4EzkuveR9pLvDVFNx6foYD'}, 'followers': {'href': None, 'total': 3875046}, 'genres': ['neo mellow', 'pop', 'uk pop'], 'href': 'https://api.spotify.com/v1/artists/4EzkuveR9pLvDVFNx6foYD', 'id': '4EzkuveR9pLvDVFNx6foYD', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab6761610000e5ebc61b7437e062ca90fcf30231', 'width': 640}, {'height': 320, 'url': 'https://i.scdn.co/image/ab67616100005174c61b7437e062ca90fcf30231', 'width': 320}, {'height': 160, 'url': 'https://i.scdn.co/image/ab6761610000f178c61b7437e062ca90fcf30231', 'width': 160}], 'name': 'James Bay', 'popularity': 72, 'type': 'artist', 'uri': 'spotify:artist:4EzkuveR9pLvDVFNx6foYD'}], 'limit': 1, 'next': 'https://api.spotify.com/v1/search?query=James+Bay&type=artist&offset=1&limit=1', 'offset': 0, 'previous': None, 'total': 67}}
+{'title': 'Let It Go', 'album': 'Chaos And The Calm', 'artist': 'James Bay', 'id': '3ZQsCvbpp2HVXt9Mp46f8n', 'genre': ['neo mellow', 'pop', 'uk pop'], 'date': '2015-03-25'}
+Title to be searched is: Billie Jean
+Artist to be searched is: Michael Jackson
+Album to be searched is: Thriller
+
+{'artists': {'href': 'https://api.spotify.com/v1/search?query=Michael+Jackson&type=artist&offset=0&limit=1', 'items': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm'}, 'followers': {'href': None, 'total': 26791346}, 'genres': ['pop', 'r&b', 'soul'], 'href': 'https://api.spotify.com/v1/artists/3fMbdgg4jU18AjLCKBhRSm', 'id': '3fMbdgg4jU18AjLCKBhRSm', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab6761610000e5eb0e08ea2c4d6789fbf5cbe0aa', 'width': 640}, {'height': 320, 'url': 'https://i.scdn.co/image/ab676161000051740e08ea2c4d6789fbf5cbe0aa', 'width': 320}, {'height': 160, 'url': 'https://i.scdn.co/image/ab6761610000f1780e08ea2c4d6789fbf5cbe0aa', 'width': 160}], 'name': 'Michael Jackson', 'popularity': 83, 'type': 'artist', 'uri': 'spotify:artist:3fMbdgg4jU18AjLCKBhRSm'}], 'limit': 1, 'next': 'https://api.spotify.com/v1/search?query=Michael+Jackson&type=artist&offset=1&limit=1', 'offset': 0, 'previous': None, 'total': 152}}   
+{'title': 'Billie Jean', 'album': 'Thriller', 'artist': 'Michael Jackson', 'id': '7J1uxwnxfQLu4APicE5Rnj', 'genre': ['pop', 'r&b', 'soul'], 'date': '1982-11-30'}
+Title to be searched is: Let It Go
+Artist to be searched is: James Bay
+Album to be searched is: Chaos And The Calm
+
+{'artists': {'href': 'https://api.spotify.com/v1/search?query=James+Bay&type=artist&offset=0&limit=1', 'items': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/4EzkuveR9pLvDVFNx6foYD'}, 'followers': {'href': None, 'total': 3875046}, 'genres': ['neo mellow', 'pop', 'uk pop'], 'href': 'https://api.spotify.com/v1/artists/4EzkuveR9pLvDVFNx6foYD', 'id': '4EzkuveR9pLvDVFNx6foYD', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab6761610000e5ebc61b7437e062ca90fcf30231', 'width': 640}, {'height': 320, 'url': 'https://i.scdn.co/image/ab67616100005174c61b7437e062ca90fcf30231', 'width': 320}, {'height': 160, 'url': 'https://i.scdn.co/image/ab6761610000f178c61b7437e062ca90fcf30231', 'width': 160}], 'name': 'James Bay', 'popularity': 72, 'type': 'artist', 'uri': 'spotify:artist:4EzkuveR9pLvDVFNx6foYD'}], 'limit': 1, 'next': 'https://api.spotify.com/v1/search?query=James+Bay&type=artist&offset=1&limit=1', 'offset': 0, 'previous': None, 'total': 67}}
+{'title': 'Let It Go', 'album': 'Chaos And The Calm', 'artist': 'James Bay', 'id': '3ZQsCvbpp2HVXt9Mp46f8n', 'genre': ['neo mellow', 'pop', 'uk pop'], 'date': '2015-03-25'}
+.Title to be searched is: Let It Go
+Artist to be searched is: James Bay
+Album to be searched is: Chaos And The Calm
+
+{'artists': {'href': 'https://api.spotify.com/v1/search?query=James+Bay&type=artist&offset=0&limit=1', 'items': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/4EzkuveR9pLvDVFNx6foYD'}, 'followers': {'href': None, 'total': 3875046}, 'genres': ['neo mellow', 'pop', 'uk pop'], 'href': 'https://api.spotify.com/v1/artists/4EzkuveR9pLvDVFNx6foYD', 'id': '4EzkuveR9pLvDVFNx6foYD', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab6761610000e5ebc61b7437e062ca90fcf30231', 'width': 640}, {'height': 320, 'url': 'https://i.scdn.co/image/ab67616100005174c61b7437e062ca90fcf30231', 'width': 320}, {'height': 160, 'url': 'https://i.scdn.co/image/ab6761610000f178c61b7437e062ca90fcf30231', 'width': 160}], 'name': 'James Bay', 'popularity': 72, 'type': 'artist', 'uri': 'spotify:artist:4EzkuveR9pLvDVFNx6foYD'}], 'limit': 1, 'next': 'https://api.spotify.com/v1/search?query=James+Bay&type=artist&offset=1&limit=1', 'offset': 0, 'previous': None, 'total': 67}}
+{'title': 'Let It Go', 'album': 'Chaos And The Calm', 'artist': 'James Bay', 'id': '3ZQsCvbpp2HVXt9Mp46f8n', 'genre': ['neo mellow', 'pop', 'uk pop'], 'date': '2015-03-25'}
+Title to be searched is: Billie Jean
+Artist to be searched is: Michael Jackson
+Album to be searched is: Thriller
+
+{'artists': {'href': 'https://api.spotify.com/v1/search?query=Michael+Jackson&type=artist&offset=0&limit=1', 'items': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm'}, 'followers': {'href': None, 'total': 26791346}, 'genres': ['pop', 'r&b', 'soul'], 'href': 'https://api.spotify.com/v1/artists/3fMbdgg4jU18AjLCKBhRSm', 'id': '3fMbdgg4jU18AjLCKBhRSm', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab6761610000e5eb0e08ea2c4d6789fbf5cbe0aa', 'width': 640}, {'height': 320, 'url': 'https://i.scdn.co/image/ab676161000051740e08ea2c4d6789fbf5cbe0aa', 'width': 320}, {'height': 160, 'url': 'https://i.scdn.co/image/ab6761610000f1780e08ea2c4d6789fbf5cbe0aa', 'width': 160}], 'name': 'Michael Jackson', 'popularity': 83, 'type': 'artist', 'uri': 'spotify:artist:3fMbdgg4jU18AjLCKBhRSm'}], 'limit': 1, 'next': 'https://api.spotify.com/v1/search?query=Michael+Jackson&type=artist&offset=1&limit=1', 'offset': 0, 'previous': None, 'total': 152}}   
+{'title': 'Billie Jean', 'album': 'Thriller', 'artist': 'Michael Jackson', 'id': '7J1uxwnxfQLu4APicE5Rnj', 'genre': ['pop', 'r&b', 'soul'], 'date': '1982-11-30'}
+Title to be searched is: Billie Jean
+Artist to be searched is: Michael Jackson
+Album to be searched is: Thriller
+
+{'artists': {'href': 'https://api.spotify.com/v1/search?query=Michael+Jackson&type=artist&offset=0&limit=1', 'items': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm'}, 'followers': {'href': None, 'total': 26791346}, 'genres': ['pop', 'r&b', 'soul'], 'href': 'https://api.spotify.com/v1/artists/3fMbdgg4jU18AjLCKBhRSm', 'id': '3fMbdgg4jU18AjLCKBhRSm', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab6761610000e5eb0e08ea2c4d6789fbf5cbe0aa', 'width': 640}, {'height': 320, 'url': 'https://i.scdn.co/image/ab676161000051740e08ea2c4d6789fbf5cbe0aa', 'width': 320}, {'height': 160, 'url': 'https://i.scdn.co/image/ab6761610000f1780e08ea2c4d6789fbf5cbe0aa', 'width': 160}], 'name': 'Michael Jackson', 'popularity': 83, 'type': 'artist', 'uri': 'spotify:artist:3fMbdgg4jU18AjLCKBhRSm'}], 'limit': 1, 'next': 'https://api.spotify.com/v1/search?query=Michael+Jackson&type=artist&offset=1&limit=1', 'offset': 0, 'previous': None, 'total': 152}}   
+{'title': 'Billie Jean', 'album': 'Thriller', 'artist': 'Michael Jackson', 'id': '7J1uxwnxfQLu4APicE5Rnj', 'genre': ['pop', 'r&b', 'soul'], 'date': '1982-11-30'}
+.
+----------------------------------------------------------------------
+Ran 2 tests in 2.779s
+
+OK
