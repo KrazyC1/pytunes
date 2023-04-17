@@ -31,5 +31,15 @@ class TestMp3(unittest.TestCase):
         self.assertEqual(TestMp3.test_music_1.get_genre(), "['dance pop', 'pop', 'post-teen pop', 'rap']")
         self.assertEqual(TestMp3.test_music_2.get_genre(), "['dance pop', 'r&b']")
 
+    def test_import_multiple_mp3_files(self):
+        folder_path = 'music/'
+        mp3_files = ['01 Fergalicious (Feat. Will.I.Am).mp3', '01 Forever (Main Version) 1.mp3']
+        mp3_list = []
+        for mp3_file in mp3_files:
+            file_path = folder_path + mp3_file
+            mp3_list.append(mp3.Mp3(file_path))
+        self.assertEqual(len(mp3_list), 2)
+
+        
 if __name__ == '__main__':
     unittest.main()
