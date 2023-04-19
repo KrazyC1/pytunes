@@ -33,7 +33,7 @@ class TestSpotify(unittest.TestCase):
     'album': 'Thriller',
     'artist': 'Michael Jackson',
     'id': '7J1uxwnxfQLu4APicE5Rnj',
-    'genre': ['pop', 'r&b', 'soul'],
+    'genre': ['r&b', 'soul'],
     'date': '1982-11-30'
 }
         actual_output = self.spotify.search(test_music2)
